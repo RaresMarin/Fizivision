@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fizivision</title>
+    <link href="Fizivision.css" rel="stylesheet">
+    <link rel="icon" href="Fv.png" type="image/jpg">
+    <style>
+               .container1 {
+            position: relative;
+            width: 200px;
+            height: 300px;
+            border: 2px solid black;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        .bila1 {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 30px;
+            height: 30px;
+            background: blue;
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+        .button {
+            padding: 10px 20px;
+            background: purple;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .masina-petrecere {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px;
+        }
+        .petrecere {
+            width: 100%;
+            height: 30%;
+            border: 2px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 300px;
+        }
+        .cover {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .player {
+            text-align: center;
+            background: #29104a;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        #button {
+            margin: 10px;
+            padding: 10px;
+            border: none;
+            background: purple;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size:20px;
+        }
+        .container-chat {
+    margin:0px auto;
+    width: 500px;
+    height: 600px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.antet-chat {
+    background-color: #29104a;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+.mesaje-chat {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.mesaj {
+    padding: 8px 12px;
+    border-radius: 15px;
+    max-width: 75%;
+    word-wrap: break-word;
+}
+.mesaj.trimis {
+    background-color: indianred;
+    color: white;
+    align-self: flex-end;
+}
+.mesaj.primit {
+    background-color: blueviolet;
+    align-self: flex-start;
+    color:white
+}
+.intrari-chat {
+    display: flex;
+    border-top: 1px solid #ddd;
+}
+.intrari-chat input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+.intrari-chat button {
+    background-color: purple;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+.butoane-chat {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+.butoane-chat button {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #29104a;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    
+    <main>
+        <aside>
+            <a href="Fv.png"><img id="Logo" src="Fv.png"/></a>
+            <li><a href="index.html">Acasă</a></li>
+            <li><a href="Meca.html">Mecanică</a></li>
+            <li><a href="Termodina.html">Termodinamică</a></li>
+            <li><a href="Opti.html">Optică</a></li>
+            <li><a href="Electri.html">Electricitate</a></li>
+            <li><a href="LaboDigi.html">Laborator Digital</a></li>
+            <li><a href="Contabili.html">Contact</a></li>
+        </aside>
+        <div id="Urat1">
+<img style="float:right" src="lan.gif"/>
+<div class="bashez">
+    <div class="piston-bicis"></div>
+</div>
+<div class="pendulum">
+  <div class="pendulum_box">
+    <div class="ball first"></div>
+      <div class="ball"></div>
+      <div  style="background-color:green;" class="ball"></div>
+      <div style="background-color:yellow;" class="ball"></div>
+      <div class="ball last"></div>
+  </div>
+</div>
+<h1>Simulare Cădere Liberă</h1>
+<p>Apasă pe buton pentru a lăsa bila să cadă.<button class="button" onclick="cadereLibera()">Start</button></p>
+<div class="container1">
+    
+    <div class="bila1" id="bila"></div>
+</div>
+
+<script>
+    function cadereLibera() {
+        let bila = document.getElementById("bila");
+        let pozitie = 0;
+        let viteza = 0;
+        let acceleratie = 0.5; // Gravitație simulată
+        let interval = setInterval(function() {
+            viteza += acceleratie;
+            pozitie += viteza;
+            if (pozitie >= 270) { // Bila atinge solul
+                pozitie = 270;
+                clearInterval(interval);
+            }
+            bila.style.top = pozitie + "px";
+        }, 20);
+    }
+    
+</script>
+<br/>
+ 
+    <div class="player">
+        <img id="cover" class="cover" src="default.jpg" alt="Cover Album">
+        <h2 id="title"></h2>
+        <audio id="audio" controls></audio>
+        <br>
+        <button id="button" onclick="prevSong()">⏮️</button>
+        <button id="button" onclick="playPause()">▶️/⏸️</button>
+        <button id="button" onclick="nextSong()">⏭️</button>
+    </div>
+
+
+    <script>
+         const songs = [
+            { title: " In the middle - Natalia Barbu ", src: "song1.mp3", cover: "cover1.jpg" },
+            { title: " Bushes & Bicycles - Fizivision Group", src: "song2.mp3", cover: "cover2.jpg" },
+            { title: "Despacito - Luis Fons & Daddy Yanke", src: "song3.mp3", cover: "cover3.jpg" },
+            { title: "Désolée- Mentissa", src: "song4.mp3", cover: "cover4.jpg" },
+            { title: "Ich will nicht - Komm tanzen", src: "song5.mp3", cover: "cover5.jpg" },
+            { title: "Chiamo io chiami tu - Gaia", src: "song6.mp3", cover: "cover6.jpg" },
+            { title: "Külm - An-Marlen  ", src: "song7.mp3", cover: "cover7.jpg" },
+            { title: "Kohoney - Grisina  ", src: "song8.mp3", cover: "cover8.jpg" },
+            { title: "Lies lay cold - Andana  ", src: "song9.mp3", cover: "cover9.jpg" },
+            { title: " Tiki - Besa", src: "song10.mp3", cover: "cover10.jpg" },
+
+
+        ];
+        let currentSongIndex = 0;
+        const audio = document.getElementById("audio");
+        const title = document.getElementById("title");
+        const cover = document.getElementById("cover");
+
+        function loadSong(index) {
+            audio.src = songs[index].src;
+            title.textContent = "" + songs[index].title;
+            cover.src = songs[index].cover;
+        }
+
+        function playPause() {
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+
+        function prevSong() {
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+            loadSong(currentSongIndex);
+            audio.play();
+        }
+
+        function nextSong() {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            loadSong(currentSongIndex);
+            audio.play();
+        }
+
+        loadSong(currentSongIndex);
+    </script>
+    <h1>Ruleta fizivision</h1>
+    <div class="masina-petrecere">
+        <div class="petrecere" id="petrecere1">❓</div>
+        <div class="petrecere" id="petrecere2">❓</div>
+        <div class="petrecere" id="petrecere3">❓</div>
+    </div>
+    <button class="button" onclick="spin()">Apasa</button>
+    
+    <script>
+        const symbols = ['🍒', '🐪', '🏍️', '🚴🏻‍♀️', '🌳', '7️⃣'];
+        
+        function spin() {
+            document.getElementById('petrecere1').textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            document.getElementById('petrecere2').textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            document.getElementById('petrecere3').textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        }
+    </script>
+    <h1>Vorbește cu Fizivison</h1>
+<div class="container-chat" >
+        
+    <div class="antet-chat">Fizivision</div>
+    <img style="width:20%;height:20%" src="Fv.png">
+    <div class="mesaje-chat" id="mesajeChat">
+        <div class="mesaj primit">Salut! Eu sunt Fizivision. Despre ce vrei să vorbim?</div>
+    </div>
+    
+    <div class="butoane-chat">
+        <button style="height:45px;width:130px;" onclick="alegeSubiect('mecanica')">Mecanică</button>
+        <button style="height:45px;width:130px;" onclick="alegeSubiect('termodinamica')">Termodinamică</button>
+        <button style="height:45px;width:130px;" onclick="alegeSubiect('optica')">Optică</button>
+        <button style="height:45px;width:130px;" onclick="alegeSubiect('electricitate')">Electricitate</button>
+    </div>
+    
+    <div class="intrari-chat">
+        <input type="text" id="intrareMesaj" placeholder="Scrie un mesaj...">
+        <button style="height:45px;width:130px;" onclick="trimiteMesaj()">Trimite</button>
+    </div>
+</div>
+
+<script>
+    let subiectCurent = null;
+    let ultimulRaspuns = "";
+
+    function alegeSubiect(subiect) {
+        subiectCurent = subiect;
+        ultimulRaspuns = "";
+        adaugaMesajFizivision(`Am selectat subiectul: ${subiect.charAt(0).toUpperCase() + subiect.slice(1)}`);
+    }
+
+    function trimiteMesaj() {
+        const input = document.getElementById('intrareMesaj');
+        const textMesaj = input.value.trim();
+        if (textMesaj === '' || subiectCurent === null) return;
+
+        const containerMesaje = document.getElementById('mesajeChat');
+
+        const mesajUser = document.createElement('div');
+        mesajUser.classList.add('mesaj', 'trimis');
+        mesajUser.innerText = textMesaj;
+
+        containerMesaje.appendChild(mesajUser);
+        input.value = '';
+
+        containerMesaje.scrollTop = containerMesaje.scrollHeight;
+
+        setTimeout(() => {
+            genereazaRaspuns(textMesaj);
+        }, 1000);
+    }
+
+    function adaugaMesajFizivision(text) {
+        const containerMesaje = document.getElementById('mesajeChat');
+
+        const mesajFizivision = document.createElement('div');
+        mesajFizivision.classList.add('mesaj', 'primit');
+        mesajFizivision.innerText = text;
+
+        containerMesaje.appendChild(mesajFizivision);
+        containerMesaje.scrollTop = containerMesaje.scrollHeight;
+    }
+
+    function genereazaRaspuns(mesaj) {
+        mesaj = mesaj.toLowerCase();
+        let raspuns = "";
+
+        if (subiectCurent === 'mecanica') {
+            if (mesaj.includes('forta') || mesaj.includes('viteza')) {
+                raspuns = 'În mecanică, forța este o mărime fizică ce produce schimbarea stării de mișcare sau de formă a unui corp. Vrei să discutăm despre legile lui Newton?';
+            } else if (mesaj.includes('energie')) {
+                raspuns = 'Energia mecanică poate fi de mai multe tipuri: cinetică, potențială gravitațională sau elastică. Vrei să îți explic fiecare tip?';
+            } else {
+                raspuns = 'Despre mecanică? Pot să îți explic despre forțe, energie, legile mișcării sau orice altceva. Ce te interesează mai exact?';
+            }
+        } 
+        else if (subiectCurent === 'termodinamica') {
+            if (mesaj.includes('caldura') || mesaj.includes('temperatura')) {
+                raspuns = 'În termodinamică, căldura este transferul de energie între două corpuri datorită diferenței de temperatură. Vrei să îți explic legea lui Fourier?';
+            } else if (mesaj.includes('legi')) {
+                raspuns = 'Termodinamica se bazează pe patru legi fundamentale. Vrei să începem cu legea zero a termodinamicii?';
+            } else {
+                raspuns = 'Vrei să discutăm despre legi, căldură, lucrul mecanic sau alte concepte din termodinamică? Ce vrei să știi?';
+            }
+        } 
+        else if (subiectCurent === 'optica') {
+            if (mesaj.includes('lumina') || mesaj.includes('lentile')) {
+                raspuns = 'Optica studiază proprietățile luminii și modul în care aceasta interacționează cu diferite materiale. Vrei să îți explic despre reflexie și refracție?';
+            } else if (mesaj.includes('culoare')) {
+                raspuns = 'Culoarea este percepută datorită lungimilor de undă diferite ale luminii. Vrei să știi mai multe despre spectrul electromagnetic?';
+            } else {
+                raspuns = 'Despre optică? Pot să îți explic despre reflexie, refracție, lentile, culori și multe altele. Ce subiect te interesează?';
+            }
+        } 
+        else if (subiectCurent === 'electricitate') {
+            if (mesaj.includes('curent') || mesaj.includes('tensiune')) {
+                raspuns = 'Curentul electric este un flux de sarcini electrice, iar tensiunea este diferența de potențial electric între două puncte. Vrei să îți explic Legea lui Ohm?';
+            } else if (mesaj.includes('circuite')) {
+                raspuns = 'Circuitele electrice pot fi serii sau paralele. Vrei să îți explic diferențele dintre ele?';
+            } else {
+                raspuns = 'Despre electricitate? Pot să îți explic despre curent, tensiune, rezistență, circuite și multe altele. Ce dorești să afli?';
+            }
+        } else {
+            raspuns = 'Te rog să selectezi mai întâi un subiect: Mecanică, Termodinamică, Optică sau Electricitate.';
+        }
+
+        if (raspuns !== ultimulRaspuns) {
+            adaugaMesajFizivision(raspuns);
+            ultimulRaspuns = raspuns;
+        }
+    }
+</script>
+<div style="text-align: center;">
+    <button id="prev-btn">
+        <i class="arrow left"></i>
+    </button>
+    <button id="next-btn">
+        <i class="arrow right"></i>
+    </button>
+</div>
+   <h1>Carte</h1>
+    <div id="book" class="book" style="display:block;margin:0px auto">
+        <!-- First Sheet (Coperta) -->
+        <div id="p1" class="paper">
+            <div class="front">
+                <div id="f1" class="front-content">
+                    <!-- Coperta față -->
+                </div>
+            </div>
+            <div class="back">
+                <div id="b1" class="back-content">
+                    <h1 style="color:black">Fizicieni Importanți</h1>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Second Sheet -->
+        <div id="p2" class="paper">
+            <div class="front">
+                <div id="f2" class="front-content">
+                    <h3>Albert Einstein</h3>
+                    <img style="width:50%;height:50%;margin-left:50px" src="einstein.jpg" alt="Albert Einstein">
+                    
+                    </div>
+            </div>
+            <div class="back">
+                <div id="b2" class="back-content">
+                    <img style="width:50%;height:50%;margin-left:50px" src="newton.jpg" alt="Isaac Newton">
+                    <h3>Isaac Newton</h3>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <!-- Third Sheet -->
+        <div id="p3" class="paper">
+            <div class="front">
+                <div id="f3" class="front-content">
+                    <img style="width:50%;height:50%;margin-left:50px" src="coanda.jpg" alt="Henri Coandă">
+                    <h3>Henri Coandă</h3>
+                   
+                </div>
+            </div>
+            <div class="back">
+                <div id="b3" class="back-content">
+                    <img src="coperta.jpg"/>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const prevBtn = document.querySelector("#prev-btn");
+const nextBtn = document.querySelector("#next-btn");
+const book = document.querySelector("#book");
+
+const paper1 = document.querySelector("#p1");
+const paper2 = document.querySelector("#p2");
+const paper3 = document.querySelector("#p3");
+const paper4 = document.querySelector("#p4");
+const paper5 = document.querySelector("#p5");
+const paper6 = document.querySelector("#p6");
+const paper7 = document.querySelector("#p7");
+
+prevBtn.addEventListener("click", goPrevPage);
+nextBtn.addEventListener("click", goNextPage);
+
+let currentLocation = 1;
+let numOfPapers = 7;
+let maxLocation = numOfPapers + 1;
+
+function openBook() {
+    book.style.transform = "translateX(50%)";
+    prevBtn.style.transform = "translateX(-180px)";
+    nextBtn.style.transform = "translateX(180px)";
+}
+
+function closeBook(isAtBeginning) {
+    if(isAtBeginning) {
+        book.style.transform = "translateX(0%)";
+    } else {
+        book.style.transform = "translateX(100%)";
+    }
+    
+    prevBtn.style.transform = "translateX(0px)";
+    nextBtn.style.transform = "translateX(0px)";
+}
+
+function goNextPage() {
+    if(currentLocation < maxLocation) {
+        switch(currentLocation) {
+            case 1:
+                openBook();
+                paper1.classList.add("flipped");
+                paper1.style.zIndex = 1;
+                break;
+            case 2:
+                paper2.classList.add("flipped");
+                paper2.style.zIndex = 2;
+                break;
+            case 3:
+                paper3.classList.add("flipped");
+                paper3.style.zIndex = 3;
+                break;
+            case 4:
+                paper4.classList.add("flipped");
+                paper4.style.zIndex = 4;
+                break;
+            case 5:
+                paper5.classList.add("flipped");
+                paper5.style.zIndex = 5;
+                break;
+            case 6:
+                paper6.classList.add("flipped");
+                paper6.style.zIndex = 6;
+                break;
+            case 7:
+                paper7.classList.add("flipped");
+                paper7.style.zIndex = 7;
+                closeBook(false);
+                break;
+            default:
+                throw new Error("unkown state");
+        }
+        currentLocation++;
+    }
+}
+
+function goPrevPage() {
+    if(currentLocation > 1) {
+        switch(currentLocation) {
+            case 2:
+                closeBook(true);
+                paper1.classList.remove("flipped");
+                paper1.style.zIndex = 7;
+                break;
+            case 3:
+                paper2.classList.remove("flipped");
+                paper2.style.zIndex = 6;
+                break;
+            case 4:
+                paper3.classList.remove("flipped");
+                paper3.style.zIndex = 5;
+                break;
+            case 5:
+                paper4.classList.remove("flipped");
+                paper4.style.zIndex = 4;
+                break;
+            case 6:
+                paper5.classList.remove("flipped");
+                paper5.style.zIndex = 3;
+                break;
+            case 7:
+                paper6.classList.remove("flipped");
+                paper6.style.zIndex = 2;
+                break;
+            case 8:
+                openBook();
+                paper7.classList.remove("flipped");
+                paper7.style.zIndex = 1;
+                break;                
+            default:
+                throw new Error("unkown state");
+        }
+
+        currentLocation--;
+    }
+}
+    </script>
+    </div>
+    
+    </main>
+    </body>
+    </html>

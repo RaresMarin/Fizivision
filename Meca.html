@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fizivision</title>
+    <link href="Fizivision.css" rel="stylesheet">
+    <link rel="icon" href="Fv.png" type="image/jpg">
+    <style>
+      
+.slider-container {
+    width: 80%;
+    margin: 20px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #845162;
+    height:80%;
+}
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.slide {
+    min-width: 100%;
+    padding: 20px;
+    width:80%;
+}
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+.prev { left: 10px; }
+.next { right: 10px; }
+    </style>
+    </head>
+    <body>
+    <main>
+        <a href="y.jpg">
+          <img id="Urat" src="y.jpg"/>
+        </a>
+        <a href="y3.jpg">
+          <img id="Urat" src="y3.jpg"/>
+        </a>
+        <a href="y2.jpg">
+          <img id="Urat" src="y2.jpg"/>
+        </a>
+        <a href="y1.jpg">
+          <img id="Urat" src="y1.jpg"/>
+        </a>
+        <a href="y4.jpeg">
+          <img id="Urat" src="y4.jpeg"/>
+        </a>
+        <a href="y5.jpg">
+          <img id="Urat" src="y5.jpg"/>
+        </a>
+        <div id="Urat1">
+        <h1 class="scriere">Motorul Otto</h1>
+<p>Motorul Otto este alcătuit dintr-un bloc care cuprinde cel puțin 4 cilindri.
+Fiecare cilindru conține:</p>
+
+<img id="Urat2"src="motooto.gif"/>
+<nav>
+<ul>cilindru</ul>
+  <ul>pistonul</ul>
+    <ul>supapă de admisie</ul>
+      <ul>supapă de evacuare</ul>
+        <ul>carburator</ul>
+          <ul>bielă</ul>
+            <ul>manivelă</ul>
+</nav>
+<h1>Funcționarea Motorului Otto</h1>
+
+<p style="font-size:45px">Motorul Otto funcționează după 4 timpi:</p>
+
+<ul>Timpul 1 - admisia</ul>
+<ul>Timpul 2 - compresia</ul>
+<ul>Timpul 3 - arderea + detenta</ul>
+<ul>Timpul 4 - evacuarea</ul>
+<p>→ Timpurile 1,2,4 = timpi morți (aducerea în parametrii mecanici)</p>
+<p>→ Timpurile 3 = primirea forței mecanice</p>
+<div class="slider-container">
+  <div class="slider">
+      <div class="slide">
+          <h2>Timpul 1: Admisia</h2>
+          <ul>Începe cu închiderea supapei de evacuare și deschiderea supapei de admisie.<ul>
+          <ul>
+              <ul>Pistonul coboară, iar în cilindru se creează o depresiune.</ul>
+              <ul>Amestecul carburant este absorbit în cilindru.</ul>
+              <ul>Supapa de admisie se închide, pistonul ajunge la P.M.I.</ul>
+          </ul>
+      </div>
+      <div class="slide">
+          <h2>Timpul 2: Compresia</h2>
+          <ul>Supapa de admisie rămâne închisă.</ul>
+          <ul>
+              <ul>Amestecul carburant este comprimat și se încălzește la 600-500°C.</ul>
+          </ul>
+      </div>
+      <div class="slide">
+          <h2>Timpul 3: Arderea - Detenta</h2>
+          <ul>În momentul în care pistonul este la P.M.I., 
+            </ul><ul>bujia produce o scânteie electrică ce aprinde amestecul carburant.</p>
+            <ul>Arderea se produce rapid, ducând la o explozie de 1500-2000°C.</ul>
+      </div>
+      <div class="slide">
+          <h2>Timpul 4: Evacuarea</h2>
+          <ul>Supapa de evacuare se deschide când pistonul este la P.M.I. - Proces izocor.</ul>
+            <ul>Temperatura gazelor evacuate este de aproximativ 600-700°C.</ul>
+          <h2>Randamentul ciclului Otto</h2>
+          <p>𝜂 = 1 - 1/𝜀^(𝜅-1)</p>
+      </div>
+  </div>
+  <button class="prev" onclick="moveSlide(-1)">❮</button>
+  <button class="next" onclick="moveSlide(1)">❯</button>
+</div>
+<script>
+  let currentIndex = 0;
+
+  function moveSlide(step) {
+      const slides = document.querySelectorAll('.slide');
+      const slider = document.querySelector('.slider');
+      
+      currentIndex += step;
+
+      if (currentIndex < 0) {
+          currentIndex = slides.length - 1;
+      } else if (currentIndex >= slides.length) {
+          currentIndex = 0;
+      }
+
+      slider.style.transform = `translateX(${-currentIndex * 100}%)`;
+  }
+
+  setInterval(() => moveSlide(1), 5000); // Auto-play la fiecare 5 secunde
+</script>
+<p>🔧Meseria de mecanic auto este una esențială în industria auto, implicând diagnosticarea, întreținerea și repararea vehiculelor.</p>
+<p>Este o meserie potrivită pentru persoanele pasionate de mașini, care au aptitudini tehnice și sunt atente la detalii.🛠️ 
+</p>
+</div>
+        <aside>
+        <a href="Fv.png"><img id="Logo" src="Fv.png"/></a>
+        <li><a href="index.html">Acasă</a></li>
+        <li><a href="Meca.html">Mecanică</a></li>
+        <li><a href="Termodina.html">Termodinamică</a></li>
+        <li><a href="Opti.html">Optică</a></li>
+        <li><a href="Electri.html">Electricitate</a></li>
+        <li><a href="LaboDigi.html">Laborator Digital</a></li>
+        <li><a href="Contabili.html">Contact</a></li>
+    </aside>
+  </br>
+  <div style="width:100%;display: flex; justify-content: center; align-items: center;">
+  </div>
+        <div class="carusel">
+            <div id="slider" class="lista">
+                <div class="iteme">
+                    <img src="we.png"/>
+                    </div>
+                    <div class="iteme">
+                        <img src="we1.png"/>
+                        </div>
+                        <div class="iteme">
+                            <img src="we2.png"/>
+                            </div>
+                            <div class="iteme">
+                                <img src="we3.png"/>
+                                </div>
+                    </div>
+                    </div>
+                    <div class="navigatie">
+                        <div class="buton" onclick="schimbaSlide(0)"></div>
+                        <div class="buton" onclick="schimbaSlide(1)"></div>
+                        <div class="buton" onclick="schimbaSlide(2)"></div>
+                        <div class="buton" onclick="schimbaSlide(3)"></div>
+                    </div>
+                    <script>
+                        let indexCurent = 0;
+                        const slider = document.getElementById("slider");
+                        const butoane = document.querySelectorAll(".buton");
+                        
+                        function schimbaSlide(index) {
+                            indexCurent = index;
+                            slider.style.transform = `translateX(-${index * 100}vw)`;
+                            butoane.forEach(btn => btn.classList.remove("activ"));
+                            butoane[index].classList.add("activ");
+                        }
+                        
+                        function autoSlide() {
+                            indexCurent = (indexCurent + 1) % 4;
+                            schimbaSlide(indexCurent);
+                        }
+                        
+                        setInterval(autoSlide, 3000);
+                        </script>
+                        </div>
+                        
+  
+
+            </body>
+        </html>
+    </main>
+    </body>
+    </html>
