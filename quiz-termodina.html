@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<head>
+     <meta charset="utf-8">
+        <title></title>
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+       
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url("fizi1.jpg");
+        background-size: cover;
+    }
+    .quiz-container {
+                margin:100px;
+        background: black;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 50%;
+        color: white;
+        font-size: 25px;
+    }
+    .question {
+        margin-bottom: 15px;
+        font-size: 30px;
+    }
+    .options label {
+        font-size: 20px;
+        display: block;
+        margin: 5px 0;
+    }
+    button {
+        font-size: 20px;
+        margin-top: 15px;
+        padding: 10px 20px;
+        border: none;
+        background: purple;
+        color: white;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+    .progress-bar {
+        width: 100%;
+        background: grey;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+    .progress {
+        height: 20px;
+        background: green;
+        width: 0%;
+        border-radius: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="quiz-container">
+             <a href="Quizuri.html" > 
+                <i style="float:left" class="fa-solid fa-house"></i>
+            </a>
+    <div id="quiz"></div>
+    <button onclick="nextQuestion()">Următoarea întrebare</button>
+    <p id="result"></p>
+    <button id="show-answers" onclick="toggleAnswers()" style="display: none;">Afișează răspunsurile</button>
+    <div id="answers-review"></div>
+    <div class="progress-bar"><div class="progress" id="progress"></div></div>
+
+    <button id="back-to-score" onclick="backToScore()" style="display: none;">Înapoi la rezultat</button>
+
+</div>
+
+
+    <script>
+        const questions = 
+        [ { question: "1)Într-o comprimare izotermă presiune gazului scade cu 25%. Cu cât la sută creşte volumul gazului?"
+, options: ["a)22%", "b)25%" , "c)33%" , "d)46%" , "e)52%"], answer: "c)33%" },
+{ question: "2)Un gaz ideal este incălzit izocor de la 25° C la 100° C. De câte ori crește presiunea gazului?", 
+options: ["a)1/2", "b)2", "c)3/4", "d)4" , "e)4/3"], answer: "d)4" },
+{ question: "3)Un gaz ideal, menținut la presiune constantă, este încălzit astfel încât volumul se măreşte cu 20%. Dacă temperatura inițială a gazului a fost 27°C, temperatura finală este:", 
+options: ["a)60K", "b)120K", "c)240K", "d)300K" , "e)360K"], answer: "e)360K" },
+{ question: "4)Un gaz ideal, aflat într-un recipient cu volum constant, este răcit astfel încât presiunea gazului scade cu 5%. Dacă temperatura iniţială a gazului a fost 27°C, temperatura finală este",
+ options: ["a)150K", "b)285K", "c)392K", "d)450K" , "e)455K"], answer: "b)285K" },
+{ question: "5)O cantitate de 2 mol de dioxid de carbon (Cv = 3R) * epsilon este încălzit la presiune constantă cu 50K. Variația energiei interne a gazului este:", 
+options: ["a)2493J", "b)2,93*10^3J", "c)2,493*10^2", "d)24,39*10^3" , "e)2,394*10^9"], answer: "a)2493J" },
+{ question: "6)Într-un vas de 2 litri se află un gaz la presiunea de 100 kPa. Gazul este răcit până presiunea devine 80 kPa. Se cunoaşte C, 2, 5R. Căldura cedată de gaz este:",
+ options: ["a)-10^2", "b)-10^3", "c)-10^4", "d)-10^5" , "e)-10^6"], answer: "a)-10^2" },
+{ question: "7)Presiunea unui gaz, care ocupă iniţial volumul de 20 litri, scade izoterm de la 8 atm la 2 atm. Ştiind că ln2=0,7. Căldura absorbită este:", 
+options: ["a)112J", "b)224J", "c)1,12*10^4J", "d)2,24*10^4" , "e)2,24*10^3"], answer: "d)2,24*10^4" },
+{ question: "8)O cantitate de gaz ideal poliatomic, cu exponentul adiabatic gamma = 4/3 se află într-un cilindru izolat adiabatic, fiind închisă cu un pison mobil, termoizolator, fără frecări. Inițial parametrii gazului sunt p, 1,6 MPa şi V1 = 1500c * m ^ 3 Gazul este lăsat să se destindă până lapresiune atmosferică normală (1 atm). Volumul final al gazului este:", 
+options: ["a)2*10^-3m^3", "b)4*10^-3m^3", "c)3*10^-3m^3", "d)8*10^-3m^3" , "e)12*10^-3m^3"], answer: "d)8*10^-3m^3" },
+{ question: "9)Un cilindru orizontal, cu lungimea de 60cm, închis la ambele capete este împărţit în două compartimente de lungimi egale printr-un piston etans care se poate deplasa fără frecări. Cele două compartimente conțin gaze la aceeaşi presiune şi temperatură Distanţa pe care trebuie deplasat lent pistonul pentru ca presiunea gazului dintr-un compartiment să fie de 5 ori mai mare decât presiunea gazului din celălalt compartiment este:",
+ options: ["a)6cm", "b)12cm", "c)20cm", "d)25cm" , "e)30cm"], answer: "c)20cm" },];
+       
+ let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+        
+        function loadQuestion() {
+            const quizDiv = document.getElementById("quiz");
+            quizDiv.innerHTML = `<p class='question'>${questions[currentQuestion].question}</p>`;
+            
+            questions[currentQuestion].options.forEach(option => {
+                quizDiv.innerHTML += `
+                    <label>
+                        <input type='radio' name='answer' value='${option}'> ${option}
+                    </label>
+                `;
+            });
+        }
+        
+        function nextQuestion() {
+            const selected = document.querySelector("input[name='answer']:checked");
+            if (!selected) return alert("Selectează un răspuns!");
+            
+            userAnswers.push({
+                question: questions[currentQuestion].question,
+                selected: selected.value,
+                correct: questions[currentQuestion].answer
+            });
+            
+            if (selected.value === questions[currentQuestion].answer) {
+                score++;
+            }
+            
+            currentQuestion++;
+            updateProgress();
+            
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                document.getElementById("quiz").innerHTML = "Test finalizat!";
+                document.getElementById("result").innerHTML = `Scorul tău: ${score} / ${questions.length}`;
+                document.querySelector("button").style.display = "none";
+                document.getElementById("show-answers").style.display = "block";
+                document.getElementById("progress").style.width = "100%";
+            }
+        }
+        
+        function updateProgress() {
+            let progress = (score / questions.length) * 100;
+            document.getElementById("progress").style.width = `${progress}%`;
+            document.getElementById("progress").innerText = `${score}/${questions.length}`;
+        }
+        
+        function toggleAnswers() {
+            const reviewDiv = document.getElementById("answers-review");
+            if (reviewDiv.style.display === "none") {
+                reviewDiv.style.display = "block";
+                reviewDiv.innerHTML = "<h3>Răspunsurile tale:</h3>";
+                userAnswers.forEach(item => {
+                    reviewDiv.innerHTML += `<p>${item.question} <br> Răspunsul tău: <b>${item.selected}</b> <br> Răspuns corect: <b>${item.correct}</b></p>`;
+                });
+            } else {
+                reviewDiv.style.display = "none";
+            }
+        }
+        
+        function backToScore() {
+            document.getElementById("answers-review").style.display = "none";
+            document.getElementById("answers-review").style.width = "20%";
+            document.getElementById("result").scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        loadQuestion();
+        </script>
+        </body>
+</html>

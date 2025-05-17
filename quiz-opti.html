@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<head>
+     <meta charset="utf-8">
+        <title></title>
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+       <style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url("fizi2.jpg");
+        background-size: cover;
+    }
+    .quiz-container {
+        margin:100px;
+        background: black;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 50%;
+        color: white;
+        font-size: 25px;
+    }
+    .question {
+        margin-bottom: 15px;
+        font-size: 30px;
+    }
+    .options label {
+        font-size: 20px;
+        display: block;
+        margin: 5px 0;
+    }
+    button {
+        font-size: 18px;
+        margin-top: 15px;
+        padding: 10px 20px;
+        border: none;
+        background: purple;
+        color: white;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+    .progress-bar {
+        width: 100%;
+        background: grey;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+    .progress {
+        height: 20px;
+        background: green;
+        width: 0%;
+        border-radius: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="quiz-container">
+                 <a href="Quizuri.html" > 
+                <i style="float:left" class="fa-solid fa-house"></i>
+            </a>
+    <div id="quiz"></div>
+    <button onclick="nextQuestion()">Următoarea întrebare</button>
+    <p id="result"></p>
+    <button id="show-answers" onclick="toggleAnswers()" style="display: none;">Afișează răspunsurile</button>
+    <div id="answers-review"></div>
+    <div class="progress-bar"><div class="progress" id="progress"></div></div>
+    <button id="back-to-score" onclick="backToScore()" style="display: none;">Înapoi la rezultat</button>
+</div>
+
+
+    <script>
+        const questions = 
+        [ { question: "1)Un fascicul de lumină trece din aer în apă. Ce se întâmplă cu viteza luminii?"
+,  options: ["a) Crește", "b) Scade", "c) Rămâne aceeași", "d) Devine infinită", "e) Se dublează"], answer: "b) Scade" },
+{ question: "2)Un fascicul de lumină trece dintr-un mediu cu indice de refracție mai mic într-un mediu cu indice de refracție mai mare. Ce fenomen apare?", 
+options: ["a) Reflexie totală", "b) Refracție", "c) Difracție", "d) Absorbție", "e) Interferență"], answer: "b) Refracție" },
+{ question: "3)Unghiul minim pentru care apare reflexia totală se numește:", 
+options: ["a) Unghi de incidență", "b) Unghi de reflexie", "c) Unghi de refracție", "d) Unghi critic", "e) Unghi polarizant"], answer: "d) Unghi critic" },
+{ question: "4)Ce tip de imagine formează o lentilă convergentă atunci când obiectul este plasat între focar și lentilă?",
+ options: ["a) Reală și răsturnată", "b) Reală și de aceeași mărime", "c) Virtuală și dreaptă", "d) Virtuală și răsturnată", "e) Nu formează imagine"], answer: "c) Virtuală și dreaptă" },
+{ question: "5)Un obiect se află la o distanță de două ori mai mare decât distanța focală față de o lentilă convergentă. Ce tip de imagine se formează?", 
+options: ["a) Reală și răsturnată", "b) Virtuală și dreaptă", "c) De aceeași mărime", "d) Nu se formează nicio imagine", "e) Imaginea este mai mare"], answer: "c) De aceeași mărime" },
+{ question: "6)Un fascicul laser suferă difracție la trecerea printr-o fantă îngustă. Ce se întâmplă cu lățimea modelului de difracție dacă se mărește lungimea de undă a luminii?",
+ options: ["a) Se micșorează", "b) Rămâne aceeași", "c) Se mărește", "d) Dispare", "e) Devine aleatorie"], answer: "c) Se mărește" },
+{ question: "7)Care dintre următoarele culori are cea mai mare lungime de undă?", 
+options: ["a) Violet", "b) Albastru", "c) Verde", "d) Galben", "e) Roșu"], answer: "e) Roșu" },
+{ question: "8)Care dintre următoarele fenomene nu schimbă direcția luminii?", 
+options: ["a) Reflexia", "b) Refracția", "c) Difracția", "d) Absorbția", "e) Interferența"], answer: "d) Absorbția" },
+{ question: "9)Într-un experiment Young cu fante duble, ce se întâmplă dacă distanța dintre fante crește?",
+ options: ["a) Benzile de interferență se lărgesc", "b) Benzile de interferență se îngustează", "c) Numărul benzilor scade", "d) Numărul benzilor crește", "e) Nu există interferență"], answer: "b) Benzile de interferență se îngustează" },];
+    
+ let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+        
+        function loadQuestion() {
+            const quizDiv = document.getElementById("quiz");
+            quizDiv.innerHTML = `<p class='question'>${questions[currentQuestion].question}</p>`;
+            
+            questions[currentQuestion].options.forEach(option => {
+                quizDiv.innerHTML += `
+                    <label>
+                        <input type='radio' name='answer' value='${option}'> ${option}
+                    </label>
+                `;
+            });
+        }
+        
+        function nextQuestion() {
+            const selected = document.querySelector("input[name='answer']:checked");
+            if (!selected) return alert("Selectează un răspuns!");
+            
+            userAnswers.push({
+                question: questions[currentQuestion].question,
+                selected: selected.value,
+                correct: questions[currentQuestion].answer
+            });
+            
+            if (selected.value === questions[currentQuestion].answer) {
+                score++;
+            }
+            
+            currentQuestion++;
+            updateProgress();
+            
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                document.getElementById("quiz").innerHTML = "Test finalizat!";
+                document.getElementById("result").innerHTML = `Scorul tău: ${score} / ${questions.length}`;
+                document.querySelector("button").style.display = "none";
+                document.getElementById("show-answers").style.display = "block";
+                document.getElementById("progress").style.width = "100%";
+            }
+        }
+        
+        function updateProgress() {
+            let progress = (score / questions.length) * 100;
+            document.getElementById("progress").style.width = `${progress}%`;
+            document.getElementById("progress").innerText = `${score}/${questions.length}`;
+        }
+        
+        function toggleAnswers() {
+            const reviewDiv = document.getElementById("answers-review");
+            if (reviewDiv.style.display === "none") {
+                reviewDiv.style.display = "block";
+                reviewDiv.innerHTML = "<h3>Răspunsurile tale:</h3>";
+                userAnswers.forEach(item => {
+                    reviewDiv.innerHTML += `<p>${item.question} <br> Răspunsul tău: <b>${item.selected}</b> <br> Răspuns corect: <b>${item.correct}</b></p>`;
+                });
+            } else {
+                reviewDiv.style.display = "none";
+            }
+        }
+        
+        function backToScore() {
+            document.getElementById("answers-review").style.display = "none";
+            document.getElementById("answers-review").style.width = "20%";
+            document.getElementById("result").scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        loadQuestion();
+        </script>
+        </body>
+</html>

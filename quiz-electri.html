@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="Fv.png" type="image/jpg">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Quiz Interactiv</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("fizi3.jpg");
+            background-size: cover;
+        }
+        .quiz-container {
+                    margin:100px;
+            background: black;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 50%;
+            color: white;
+            font-size: 25px;
+        }
+        .question {
+            margin-bottom: 15px;
+            font-size: 30px;
+        }
+        .options label {
+            font-size: 20px;
+            display: block;
+            margin: 5px 0;
+        }
+        button {
+            font-size: 18px;
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            background: purple;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .progress-bar {
+            width: 100%;
+            background: grey;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        .progress {
+            height: 20px;
+            background: green;
+            width: 0%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+                     <a href="Quizuri.html" > 
+                <i style="float:left" class="fa-solid fa-house"></i>
+            </a>
+        <div id="quiz"></div>
+        <button onclick="nextQuestion()">Următoarea întrebare</button>
+        <p id="result"></p>
+        <button id="show-answers" onclick="toggleAnswers()" style="display: none;">Afișează răspunsurile</button>
+        <div id="answers-review"></div>
+        <div class="progress-bar"><div class="progress" id="progress"></div></div>
+        <button id="back-to-score" onclick="backToScore()" style="display: none;">Înapoi la rezultat</button>
+    </div>
+    
+    
+    <script>
+        const questions = 
+        [ { question: "1)Care este unitatea de măsură pentru rezistența electrică?"
+, options: ["a) Ohm","b)Vol","C)Amper", "d)Watt", "e)Coulomb"], answer: "a) Ohm" },
+{ question: "2)Ce efect are un conductor electric mai lung asupra rezistenței electrice?", 
+options: ["a) Scade rezistența"," b) Crește rezistența", "c) Nu afectează rezistența", "d) Crește tensiunea", "e)Crește curentul"], answer: " b) Crește rezistența" },
+{ question: "3)Legea lui Ohm este exprimată prin formula:", 
+options: ["a) V = I * R", "b) P = V * I", "c) R = V * I", "d) I = V * R", "e) V = P * I"], answer: "a) V = I * R" },
+{ question: "4)Legea lui Ohm este exprimată prin formula:",
+ options: ["a) Crește", "b) Scade", "c) Rămâne constantă", "d) Crește tensiunea", "e) Se dublează"], answer: "b)scade" },
+{ question: "5)Care dintre următoarele este un conductor bun?", 
+options: ["a) Plastic", "b) Lemn", "c) Cupru", "d) Sticlă", "e) Cauciuc" ], answer: "c)Cupru" },
+{ question: "6)Ce se întâmplă cu puterea consumată de un rezistor dacă tensiunea aplicată se dublează?",
+ options: ["a) Se înjumătățește", "b) Rămâne constantă", "c) Se dublează", "d) Se mărește de patru ori", "e) Scade la zero" ], answer: "d) Se mărește de patru ori" },
+{ question: "7)Ce tip de curent furnizează o baterie obișnuită?", 
+options: ["a) Curent alternativ", "b) Curent continuu", "c) Curent trifazat", "d) Curent de impuls", "e) Curent oscilant" ], answer: "b) Curent continuu" },
+{ question: "8)Ce se măsoară cu un ampermetru?", 
+options: ["a) Tensiunea", "b) Rezistența", "c) Puterea", "d) Intensitatea curentului", "e) Frecvența"], answer: "d) Intensitatea curentului" },
+{ question: "9)Ce se întâmplă într-un circuit paralel dacă unul dintre rezistoare se defectează (se deschide circuitul prin el)?",
+ options: ["a) Întregul circuit se oprește", "b) Curentul total scade", "c) Curentul total crește", "d) Tensiunea totală scade", "e) Nu se întâmplă nimic"], answer: "b) Curentul total scade", },];
+let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+        
+        function loadQuestion() {
+            const quizDiv = document.getElementById("quiz");
+            quizDiv.innerHTML = `<p class='question'>${questions[currentQuestion].question}</p>`;
+            
+            questions[currentQuestion].options.forEach(option => {
+                quizDiv.innerHTML += `
+                    <label>
+                        <input type='radio' name='answer' value='${option}'> ${option}
+                    </label>
+                `;
+            });
+        }
+        
+        function nextQuestion() {
+            const selected = document.querySelector("input[name='answer']:checked");
+            if (!selected) return alert("Selectează un răspuns!");
+            
+            userAnswers.push({
+                question: questions[currentQuestion].question,
+                selected: selected.value,
+                correct: questions[currentQuestion].answer
+            });
+            
+            if (selected.value === questions[currentQuestion].answer) {
+                score++;
+            }
+            
+            currentQuestion++;
+            updateProgress();
+            
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                document.getElementById("quiz").innerHTML = "Test finalizat!";
+                document.getElementById("result").innerHTML = `Scorul tău: ${score} / ${questions.length}`;
+                document.querySelector("button").style.display = "none";
+                document.getElementById("show-answers").style.display = "block";
+                document.getElementById("progress").style.width = "100%";
+            }
+        }
+        
+        function updateProgress() {
+            let progress = (score / questions.length) * 100;
+            document.getElementById("progress").style.width = `${progress}%`;
+            document.getElementById("progress").innerText = `${score}/${questions.length}`;
+        }
+        
+        function toggleAnswers() {
+            const reviewDiv = document.getElementById("answers-review");
+            if (reviewDiv.style.display === "none") {
+                reviewDiv.style.display = "block";
+                reviewDiv.innerHTML = "<h3>Răspunsurile tale:</h3>";
+                userAnswers.forEach(item => {
+                    reviewDiv.innerHTML += `<p>${item.question} <br> Răspunsul tău: <b>${item.selected}</b> <br> Răspuns corect: <b>${item.correct}</b></p>`;
+                });
+            } else {
+                reviewDiv.style.display = "none";
+            }
+        }
+        
+        function backToScore() {
+            document.getElementById("answers-review").style.display = "none";
+            document.getElementById("answers-review").style.width = "20%";
+            document.getElementById("result").scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        loadQuestion();
+        </script>
+        </body>
+</html>

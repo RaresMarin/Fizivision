@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="Fv.png" type="image/jpg">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Quiz Interactiv</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url("fizi.jpg");
+        background-size: cover;
+    }
+    .quiz-container {
+                margin:100px;
+        background: black;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 50%;
+        color: white;
+        font-size: 25px;
+    }
+    .question {
+        margin-bottom: 15px;
+        font-size: 30px;
+    }
+    .options label {
+        font-size: 20px;
+        display: block;
+        margin: 5px 0;
+    }
+    button {
+        font-size: 18px;
+        margin-top: 15px;
+        padding: 10px 20px;
+        border: none;
+        background: purple;
+        color: white;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+    .progress-bar {
+        width: 100%;
+        background: grey;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+    .progress {
+        height: 20px;
+        background: green;
+        width: 0%;
+        border-radius: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="quiz-container">
+                 <a href="Quizuri.html" > 
+                <i style="float:left" class="fa-solid fa-house"></i>
+            </a>
+    <div id="quiz"></div>
+    <button onclick="nextQuestion()">Următoarea întrebare</button>
+    <p id="result"></p>
+    <button id="show-answers" onclick="toggleAnswers()" style="display: none;">Afișează răspunsurile</button>
+    <div id="answers-review"></div>
+    <div class="progress-bar"><div class="progress" id="progress"></div></div>
+</div>
+
+
+    <script>
+        const questions = 
+        [ { question: "1)Formula forței este:"
+, options: ["a) F = mv", "b) F = d/t", "c) F = mg", "d) F = m/a", "e) F = ma"], answer: "e) F = ma" },
+{ question: "2)Unitatea de măsură pentru energie în SI este:", 
+options: ["a) Watt", "b) Newton", "c) Joule", "d) Pascal", "e) Volt"], answer: "c)Joule" },
+{ question: "3)Care dintre mărimile fizice de mai jos are caracter vectorial?", 
+options: ["a)energia", "b)masa", "c)densitatea", "d)forța" , "e)lucrul mecanic"], answer: "d)forța" },
+{ question: "4)O cutie cu nisip se află pe o suprafață orizontală pe care poate aluneca cu frecare µ=0,05. Cutia are masa m = 20 kg. Se trage în cutie un glonț cu masa m = 50g cu viteza orizontală v= 500m/s. Se cunoaște g = 10m/s2, glonțul rămâne în nisip. Pe ce distanță se va deplasa cutia după impact?",
+ options: ["a)0,85m", "b)0,53m", "c)0,98m", "d)1,55m" , "e)1,85m"], answer: "d)1,55m" },
+{ question: "5)Un automobil cu masă m= 1000kg pornește din repaus în mișcare rectilinie uniform accelerată pe un drum orizontal. Coeficientul de frecare cu șoseaua este µ=0,012. După 3 minute de la pornire, automobilul atinge viteza v= 72km/h. Se cunoaște g = 10m/s2. Forța de tracțiune a motorului automobilului este:", 
+options: ["a)70N", "b)120N", "c)230N", "d)300N" , "e)490N"], answer: "c)230N" },
+{ question: "6)În același moment se aruncă în sus vertical de la sol un corp cu viteza v0=30 m/s și se lasă sa cadă liber de la înălțimea h=90m un alt corp. Se consideră g=10 m/s2. Momentul întâlnirii și respectiv înălțimea la care ea are loc sunt:",
+ options: ["a)2s 40m", "b)3s 45m", "c)1s 2,5m", "d)2s 45m" , "e)3s 15m"], answer: "b)3s 45m" },
+{ question: "7)O minge aruncată vertical de la suprafața planetei X cu viteză inițială de 50m/s revine la locul de lansare după 5s. Dacă mingea este lansată vertical într-un punct de pe suprafața planetei Y cu aceeași viteză inițială, după 5s, ea se află încă în mișcare cu viteza de 31 m/s. Ce fracțiune in accelerația gravitațională de pe suprafața planetei X reprezintă accelerația gravitațională la suprafața planetei Y?  ", 
+options: ["a)0,39", "b)0,53", "c)0,65", "d)0,76" , "e)0,19"], answer: "e)0,19" },
+{ question: "8)Un corp coboară pe un plan înclinat de unghi α și înălțime h0. Lucrul mecanic al reacțiunii planului, N with rightwards arrow on top, este:", 
+options: ["a)0", "b)mgh", "c)mghsina", "d)mghcosa" ], answer: "a)0" },
+{ question: "9)Dacă viteza unui obiect se dublează, energia sa cinetică:",
+ options: ["a) Se înjumătățește", "b) Rămâne aceeași", "c) Se dublează", "d) Se mărește de patru ori", "e) Devine zero"], answer: "d) Se mărește de patru ori" },];
+       
+ let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+        
+        function loadQuestion() {
+            const quizDiv = document.getElementById("quiz");
+            quizDiv.innerHTML = `<p class='question'>${questions[currentQuestion].question}</p>`;
+            
+            questions[currentQuestion].options.forEach(option => {
+                quizDiv.innerHTML += `
+                    <label>
+                        <input type='radio' name='answer' value='${option}'> ${option}
+                    </label>
+                `;
+            });
+        }
+        
+        function nextQuestion() {
+            const selected = document.querySelector("input[name='answer']:checked");
+            if (!selected) return alert("Selectează un răspuns!");
+            
+            userAnswers.push({
+                question: questions[currentQuestion].question,
+                selected: selected.value,
+                correct: questions[currentQuestion].answer
+            });
+            
+            if (selected.value === questions[currentQuestion].answer) {
+                score++;
+            }
+            
+            currentQuestion++;
+            updateProgress();
+            
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                document.getElementById("quiz").innerHTML = "Test finalizat!";
+                document.getElementById("result").innerHTML = `Scorul tău: ${score} / ${questions.length}`;
+                document.querySelector("button").style.display = "none";
+                document.getElementById("show-answers").style.display = "block";
+                document.getElementById("progress").style.width = "100%";
+            }
+        }
+        
+        function updateProgress() {
+            let progress = (score / questions.length) * 100;
+            document.getElementById("progress").style.width = `${progress}%`;
+            document.getElementById("progress").innerText = `${score}/${questions.length}`;
+        }
+        
+        function toggleAnswers() {
+            const reviewDiv = document.getElementById("answers-review");
+            if (reviewDiv.style.display === "none") {
+                reviewDiv.style.display = "block";
+                reviewDiv.innerHTML = "<h3>Răspunsurile tale:</h3>";
+                userAnswers.forEach(item => {
+                    reviewDiv.innerHTML += `<p>${item.question} <br> Răspunsul tău: <b>${item.selected}</b> <br> Răspuns corect: <b>${item.correct}</b></p>`;
+                });
+            } else {
+                reviewDiv.style.display = "none";
+            }
+        }
+        
+        function backToScore() {
+            document.getElementById("answers-review").style.display = "none";
+            document.getElementById("answers-review").style.width = "20%";
+            document.getElementById("result").scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        loadQuestion();
+        </script>
+        </body>
+</html>
