@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fizivision</title>
+    <link href="Fizivision.css" rel="stylesheet">
+    <link rel="icon" href="Fv.png" type="image/jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <script src="Fizivision.js"></script>
+    <main>
+        <aside style="z-index:1;">
+            <a href="Fv.png"><img id="Logo" src="Fv.png"/></a>
+            <li><a href="index.html">Acasă</a></li>
+            <li><a href="Meca.html">Mecanică</a></li>
+            <li><a href="Termodina.html">Termodinamică</a></li>
+            <li><a href="Opti.html">Optică</a></li>
+            <li><a href="Electri.html">Electricitate</a></li>
+            <li><a href="LaboDigi.html">Laborator Digital</a></li>
+            <li><a href="Contabili.html">Contact</a></li>
+        </aside>
+        <div class="fundal">
+            <div class="container" id="formular-container">
+                <div class="formular">
+                    <div class="formular-container inregistrare">
+                        <form action="inregistrare.php" method="post">
+                        <h2>Crează cont</h2>
+                        <div class="iconite">
+                            <a href="Fizivision.html" class="icon"><i class="fa-brands fa-google"></i></a>
+                            <a href="https://www.instagram.com/rares_marincas/" class="icon"> <i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://www.tiktok.com/@rawrslyan" class="icon"> <i class="fa-brands fa-tiktok"></i></a>
+                                <a href="https://web.snapchat.com/" class="icon">  <i class="fa-brands fa-snapchat"></i></a>
+                        </div>
+                        <input type="text" name="Nume" placeholder="Nume" required>
+                        <input type="email" name="Email" placeholder="Email" required>
+                        <input type="password" name="Parolă" placeholder="Parolă" required>
+                        <br/>
+                        <button style="background-color:black" id="submit-button" type="submit">Trimitere</button>
+                        <button  style="background-color:black" id="submit-reset" type="reset">Resetare</button>
+                    </form>
+                        <div class="container-misca">
+                            <p>Ai deja cont? <button style="background-color:white" onclick="Formularmiscator()">Conectează-te</button></p>
+                        </div>
+                    </div>
+                    <div class="formular-container conectare">
+                        <form action="autentificare.php"  method="post">
+                        <h2>Conectează-te</h2>
+                        <div class="iconite">
+                            <a href="file:///C:/Users/rares/OneDrive/Desktop/Fizivision/Fizivision.html" id="icon"><i class="fa-brands fa-google"></a></i>
+                            <a href="https://www.instagram.com/rares_marincas/" id="icon"> <i class="fa-brands fa-instagram"></a></i>
+                            <a href="https://www.tiktok.com/@rawrslyan?lang=ro-RO" id="icon"> <i class="fa-brands fa-tiktok"></a></i>
+                                <a href="https://web.snapchat.com/" id="icon"> <i class="fa-brands fa-snapchat"></a></i>
+                        </div>
+                        <input type="email" name="Email" placeholder="Email" required>
+                        <input type="password" placeholder="Parolă" name="Parolă" required>
+                        <br/>
+                        <button style="background-color:black" id="submit-button" type="submit">Trimitere</button>
+                        <button style="background-color:black" id="submit-button" type="reset">Resetare</button>
+                    </form>
+                        <div class="container-misca">
+                            <p>Nu ai cont? <button style="background-color:white" onclick="Formularmiscator()">Înregistrează-te</button></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+function Formularmiscator() {
+    document.getElementById('formular-container').classList.toggle('active');
+}
+            </script>
+            <div style="text-align:center;">
+                    <a href="https://eduboom.ro/">EduBoom</a>
+                    <a href="https://www.edupedu.ro/">EduPedu</a>
+                    <a href="https://phet.colorado.edu/">Phet Colorado</a>
+                    <a href="https://autobaiasprie.ro/">Mecanica</a>
+                </div>
+    </main>
+    </body>
+    </html>

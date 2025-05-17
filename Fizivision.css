@@ -1,0 +1,626 @@
+body{
+    height:90vh;
+    background-color:#29104a;
+}
+
+main{
+    height:100%;
+    width:100%;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#Logo{
+  width:100%;
+  height:20%;
+}
+aside{
+    position:fixed;
+    height:100vh;
+    width:13%;
+    display:fixed;
+    flex-direction:column;
+    font-size: 1.1rem;
+    background-color:#845162;
+    backdrop-filter:blur(20px);
+}
+
+aside li a{
+    list-style-type: none;
+    display:fixed;
+    color: #efe3e8;;
+    align-items: center;
+    display: grid;
+    place-items: center;
+    cursor:pointer;
+    position:relative;
+
+}
+
+li a{
+    list-style-type: none;
+    display: grid;
+    text-decoration: none;
+}
+
+li{
+    border-bottom: 5px solid white;
+    list-style-type:none;
+    margin:20px;
+    padding:15px;
+}
+
+video {
+    position: fixed;
+    top: 0;
+    left: 10%;
+    width: 90%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+#buton1{
+    float:right;
+    margin:50px;
+    height:10%;
+    width:23%;
+    position:fixed;
+    gap:20px;
+    top: 74%;
+    left: 29%;
+    transform: translate(-50%, -50%);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 5px;
+    opacity: 0;
+    pointer-events: auto 
+}
+
+
+.fundal {
+    position: fixed;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background:url('Fizivision.webp');
+    background-size:50rem;
+    animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: -100% -50%; }
+}
+
+.bashesbicis{
+    width:50%;
+    background:transparent;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align:center;
+}
+
+#hover{
+    background-color:white;
+    color:black;
+}
+
+.container {
+    position: relative;
+    width:50%;
+    background: transparent;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    text-align: center;
+    top:30%;
+    left:20%;
+}
+.formular {
+    display: flex;
+    width: 200%;
+    transition: transform 0.5s ease-in-out;
+}
+.formular-container {
+    width: 50%;
+    padding: 30px;
+    flex-shrink: 0;
+}
+.container.active .formular {
+    transform: translateX(-50%);
+}
+input {
+    width: 50%;
+    padding: 8px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    background: #eee;
+    font-size: 14px;
+}
+button {
+    background-color: #29104a;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 14px;
+}
+.container-misca {
+    margin-top: 15px;
+}
+.container-misca button {
+    background: none;
+    border: none;
+    color: #512da8;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.icon {
+    pointer-events: auto; /* Acest lucru dezactivează click-ul */
+}
+
+.quiz{
+     width:37%;
+     gap:20px;
+     margin:20px;
+     height:100%;
+     bottom:0;
+    border:5px solid white;
+     padding: 20px;
+     text-align: center;
+     font-size: 35px;
+     font-family: "Gill Sans Extrabold", sans-serif;
+}
+
+.quiz1{
+ 
+    float:right;
+    width:37%;
+    border:5px solid white;
+    gap:20px;
+    margin:20px;
+    height:100%;
+    padding: 20px;
+    text-align: center;
+    font-size:35px;
+    font-family: "Gill Sans Extrabold", sans-serif;
+}
+
+.carusel {
+  z-index:-1;
+  margin-left:250px;
+	width:100%;
+    height:350px;
+	overflow: hidden;
+	position: relative;
+}
+
+.lista {
+	display: flex;
+	width: 300%;
+	transition: transform 0.5s ease-in-out;
+}
+
+.iteme {
+	width: 100vw;
+	height: 100vh;
+	flex-shrink: 0;
+	position: relative;
+}
+
+.iteme img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.container {
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translateX(-50%);
+	color: white;
+	text-shadow: 0 5px 10px black;
+	text-align: center;
+}
+
+.pendulum{
+    position:absolute; 
+    width: 220px;
+    height: 180px;
+    background-color: #845162;
+    top:20%;
+    left:50%;
+    border-radius: 5%;
+    align-items: center;
+    border-top: 15px solid #29104a;
+    transform: translate(-50%, -50%);
+    margin-left: 120px;
+    }
+  .pendulum_box{
+    display: flex;
+    padding: 120px 0 0 10px;
+    position: absolute;
+    flex: 1;
+    background-color:#845162;
+  }
+
+  .ball{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: red;
+    position: relative;
+    transform-origin: 50% -300%;
+    
+  }
+    .ball::before{
+      content: '';
+      width: 2px;
+      height: 120px;
+      background-color:white;
+      left: 18px;
+      top: -120px;
+      position: absolute;
+    }
+  
+  .ball.first{
+    animation: firstball .9s alternate ease-in infinite;
+    background-color:blue;
+  }
+  
+  @keyframes firstball{
+    0%{
+      transform: rotate(35deg);
+    }
+    50%{
+      transform: rotate(0deg);
+    }
+  }
+  
+  .ball.last{
+    animation: lastball .9s alternate ease-out infinite;
+    background-color:purple;
+  }
+  
+  @keyframes lastball{
+    50%{
+      transform: rotate(0deg);
+    }
+    100%{
+      transform: rotate(-35deg);
+    }
+  }
+
+  img{
+    height:30%;
+    width:18%;
+  }
+
+  #Urat{
+    animation: impinge 10s infinite;
+    float:right;
+    width:15%;
+    margin:10px;
+  }
+
+  #Urat2{
+    float:right;
+    width:16%;
+  }
+    
+#Urat1{
+  float:right;
+  width:80%;
+  color:white;
+}
+
+h1{
+  text-align:center;
+  font-size:50px;
+  color:white;
+  animation:scriere 2s steps(12, end) forwards, cursorul .2s steps(12, start) infinite;
+}
+
+
+@keyframes scriere {
+  from { width: 50% }
+  to { width: 100%; } /* Se asigură că textul este vizibil */
+}
+
+@keyframes cursorul {
+  50% { border-color: transparent; }
+}
+
+p{
+  font-size:35px;
+  margin-left:20px;
+  color:white;
+  float:left;
+}
+
+ul{
+  font-size:20px;
+  text-decoration: none;
+}
+
+table{
+  width:80%;
+  color:white;
+  float:right;
+}
+
+th{
+  width:15%;
+  font-size:30px;
+}
+
+td{
+  height:20rem;
+  border:5px solid white;
+  text-align:center;
+  font-size:20px;
+}
+
+#Rares{
+  width:100%;
+  height:100%;
+}
+.carduri{
+  width:600px;
+height:600px;
+perspective:1000px;
+
+}
+
+
+@keyframes impinge{
+    50% { transform: translateX(200px) }
+    to {
+        transform: translateZ(-100px);
+    }
+}
+
+summary{
+  font-size:25px;
+  color:white;
+}
+
+#scoreBar{
+  justify-content: center;
+  color:#512da8;
+}
+.card {
+width: 100%;
+height: 100%;
+position: relative;
+transform-style: preserve-3d;
+transform: rotateY(0deg);
+transition: transform 0.8s ease-in-out;
+}
+
+.carduri:hover .card {
+transform: rotateY(180deg);
+}
+
+.fata-cardului {
+position: absolute;
+width: 100%;
+height: 100%;
+backface-visibility: hidden;
+border-radius: 12px;
+display: flex;
+justify-content: center;
+align-items: center;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+#fata {
+  align-items: center;
+  text-align:center;
+background-color:#512da8;
+color: white;
+font-family: "Comic Sans", cursive;
+}
+
+#spate {
+background-color:#E3b6b1;
+color: white;
+font-family: "Comic Sans", cursive;
+text-align:center;
+transform: rotateY(180deg);
+}
+
+#flash {
+display: flex;
+justify-content: center;
+align-items: center;
+  gap: 20px; 
+  padding: 20px;
+}
+
+.bashez {
+  width: 150px;
+  height: 300px;
+  border: 5px solid black;
+  position: relative;
+  background: lightgray;
+  overflow: hidden;
+  
+}
+.piston-bicis {
+  width: 100%;
+  height: 50px;
+  background: red;
+  position: absolute;
+  bottom: 10px;
+  transition: bottom 1s ease-in-out;
+}
+.bashez:hover .piston-bicis {
+  bottom: 150px; /* Simulează expansiunea gazului */
+}
+h2{
+  color:white;
+  text-align:center;
+  font-size:50px;
+}
+
+.book {
+  color:black;
+  margin-top: 12vh;
+  position: relative;
+  width: 56vh;
+  height: 80vh;
+  transition: transform 0.5s;
+}
+
+.paper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  perspective: 1500px;
+}
+
+.front,
+.back {
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform-origin: left;
+  transition: transform 0.5s;
+}
+
+.front {
+  z-index: 1;
+  backface-visibility: hidden;
+  border-left: 3px solid #fcf4e9;
+}
+
+.back {
+  z-index: 0;
+}
+
+.front-content, .back-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paper img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Setează coperta corect */
+#f1 {
+  background-image: url('coperta.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Paper flip effect */
+.flipped .front,
+.flipped .back {
+  transform: rotateY(-180deg);
+}
+
+/* Controller Buttons */
+.arrow {
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  margin-top: 12vh;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  float: right;
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+body button {
+  position: relative;
+  z-index: 5;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 10px;
+  transition: transform 0.5s;
+}
+
+button:focus {
+  outline: none;
+}
+
+button i {
+  color: #636363;
+}
+
+i {
+  font-size: 50px;
+  color: purple;
+}
+
+/* Paper stack order */
+#p1 {
+  z-index: 7;
+}
+
+#p2 {
+  z-index: 6;
+}
+
+#p3 {
+  z-index: 5;
+}
+
+#p4 {
+  z-index: 4;
+}
+
+.back-content {
+  transform: rotateY(180deg);
+}
+
+#moto{
+  width:50%;
+  height:100%;
+  position:relative;
+  left: 25px;
+  object-fit: none;
+  z-index: -1;
+}
+
+a{
+  text-decoration: none;
+  color:#512da8;
+}
+
+a:hover{
+  color:pink;
+}
+

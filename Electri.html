@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fizivision</title>
+    <link href="Fizivision.css" rel="stylesheet">
+    <link rel="icon" href="Fv.png" type="image/jpg">
+    <style>
+    .circuit {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+    }
+    .bulb {
+        width: 50px;
+        height: 50px;
+        background: yellow;
+        border-radius: 50%;
+        box-shadow: 0 0 10px yellow;
+        transition: background 0.3s, box-shadow 0.3s;
+    }
+    .switch {
+        width: 60px;
+        height: 30px;
+        background: gray;
+        text-align: center;
+        cursor: pointer;
+        color: white;
+        line-height: 30px;
+        user-select: none;
+    }
+    .off .bulb {
+        background: #444;
+        box-shadow: none;
+
+        }
+        .container2 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 2000px;
+        }
+        .card2 {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            width: 40%;
+            text-align: center;
+            
+        }
+        h2 {
+            color: #333;
+        }
+        p{
+            color:black;
+        }
+    </style>
+</style>
+</head>
+<body>
+    <main>
+        <aside>
+            <a href="Fv.png"><img id="Logo" src="Fv.png"/></a>
+            <li><a href="Fizivision.html">Acasă</a></li>
+            <li><a href="Meca.html">Mecanică</a></li>
+            <li><a href="Termodina.html">Termodinamică</a></li>
+            <li><a href="Opti.html">Optică</a></li>
+            <li><a href="Electri.html">Electricitate</a></li>
+            <li><a href="LaboDigi.html">Laborator Digital</a></li>
+            <li><a href="Contabili.html">Contact</a></li>
+        </aside>
+        <div id="Urat1">
+            <h1>Circuit Paralel</h1>
+            <p style="color:white">Apasă pe comutator pentru a aprinde/stinge becurile.</p>
+            <div class="circuit off">
+                <div class="switch" onclick="toggleCircuit()"></div>
+                <div class="bulb"></div>
+                <div class="bulb"></div>
+            </div>
+            <br/>
+            <br/>
+            
+            <h1>Calcularea intensitatii</h1>
+            <label>Tensiunea</label>
+<input style="width:10%;" id="tensiunea" placeholder="12V"></input>
+<label>Rezistenta</label>
+<input  style="width:10%;" id="rezistenta" placeholder="12Ω"></input>
+<address>Rezultatul este <span id="calcul">1</span> A</address>
+<button onclick="calculeaza()">Schimba datele</button>
+<script src="Fizivision.js"></script>
+        <h1>Curentul alternativ</h1>
+        <img style="margin-left:40%;" src="curealte.gif"/>
+        <h1>Informații despre Electricitate</h1>
+        <div class="container2">
+            <div class="card2">
+                <h2>Ce este Electricitatea?</h2>
+                <p>Electricitatea este o formă de energie rezultată din mișcarea electronilor printr-un conductor.</p>
+            </div>
+            <div class="card2">
+                <h2>Tipuri de Electricitate</h2>
+                <p>Există două tipuri principale: electricitate statică și electricitate dinamică.</p>
+            </div>
+            <div class="card2">
+                <h2>Unitatea de Măsură</h2>
+                <p>Principala unitate de măsură a electricității este voltul (V), amperul (A) și wattul (W).</p>
+            </div>
+            <div class="card2">
+                <h2>Surse de Electricitate</h2>
+                <p>Electricitatea poate fi generată din surse naturale precum soarele, vântul și apa.</p>
+            </div>
+            <div class="card2">
+                <h2>Legea lui Ohm</h2>
+                <p>Legea lui Ohm afirmă că tensiunea (V) este egală cu produsul dintre rezistență (R) și curent (I): 
+                    </p><p>V = I × R.</p>
+            </div>
+        </div>
+        <h1>Circuit electric</h1>
+        <a href="circuelec.png">
+            <img style="float:right;width:50%;height:50%" src="circuelec.png"/>
+        </a>
+        <p style="color:white">Un circuit electric este un traseu închis prin care circulă curentul electric, format din surse de tensiune (baterii, prize), conductori (fire) și consumatori (becuri, motoare). Poate fi în serie sau paralel, iar funcționarea sa depinde de legăturile dintre componente și de caracteristicile acestora.</p>
+    </div>
+    <br/>
+            <div class="carusel" style="height:500px;">
+                <div id="slider" class="lista">
+                    <div class="iteme">
+                        <img src="nbarbu4.png"/>
+                        </div>
+                        <div class="iteme">
+                            <img src="nbarbu5.png"/>
+                            </div>
+                            <div class="iteme">
+                                <img src="nbarbu6.png"/>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="navigatie">
+                            <div class="buton" onclick="schimbaSlide(0)"></div>
+                            <div class="buton" onclick="schimbaSlide(1)"></div>
+                            <div class="buton" onclick="schimbaSlide(2)"></div>
+                           </div>
+                        <script>
+                            let indexCurent = 0;
+                            const slider = document.getElementById("slider");
+                            const butoane = document.querySelectorAll(".buton");
+                            
+                            function schimbaSlide(index) {
+                                indexCurent = index;
+                                slider.style.transform = `translateX(-${index * 100}vw)`;
+                                butoane.forEach(btn => btn.classList.remove("activ"));
+                                butoane[index].classList.add("activ");
+                            }
+                            
+                            function autoSlide() {
+                                indexCurent = (indexCurent + 1) % 3;
+                                schimbaSlide(indexCurent);
+                            }
+                            
+                            setInterval(autoSlide, 3000);
+                            </script>
+                            </div>
+            <script>
+                function toggleCircuit() {
+                    document.querySelector('.circuit').classList.toggle('off');
+                }
+            </script>
+        </body>
+        </html>
+        

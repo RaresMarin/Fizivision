@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fizivision</title>
+    <link href="Fizivision.css" rel="stylesheet">
+    <link rel="icon" href="Fv.png" type="image/jpg">
+</head>
+<body>
+    <main>
+        <aside>
+            <a href="Fv.png"><img id="Logo" src="Fv.png"/></a>
+            <details>
+             <summary></summary>
+            <li><a href="index.html">Acasă</a></li>
+            <li><a href="Meca.html">Mecanică</a></li>
+            <li><a href="Termodina.html">Termodinamică</a></li>
+            <li><a href="Opti.html">Optică</a></li>
+            <li><a href="Electri.html">Electricitate</a></li>
+            <li><a href="LaboDigi.html">Laborator Digital</a></li>
+            <li><a href="Contabili.html">Contact</a></li>
+        </details>
+        </aside>
+    </main>
+        <video id="video" style="background-size:cover"  autoplay muted loop>
+            <source src="likewow.mp4" type="video/mp4">
+
+        </video>
+    
+    <script>
+        // Lista cu videoclipurile
+        const videos = ["likewow.mp4", "likewow1.mp4", "cami.mp4" ];
+        let index = 0;
+    
+        const videoElement = document.getElementById("video");
+    
+        // Schimbă videoclipul la fiecare 10 secunde
+        setInterval(() => {
+            index = (index + 1) % videos.length;
+            videoElement.src = videos[index];
+            videoElement.play();
+        }, 5000);
+    </script>
+
+      <button><a id="buton1" href="Quizuri.html">Inregistreazate Acum</a></button>
+      <button><a id="buton1" style="left:54%" href="Contabili.html">Inregistreazate Acum</a></button>
+      
+</body>
+</html>
