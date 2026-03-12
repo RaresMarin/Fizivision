@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fizivision</title>
+    <link href="Fizivision.css" rel="stylesheet">
+    <link rel="icon" href="Fv.png" type="image/jpg">
+</head>
+<body>
+     
+    <main>
+        <aside>
+                     <a href="Fv.png"><img id="Logo" src="Fv.png"/></a>
+            <ul id="bi">
+            <input type="text" id="bic" onkeyup="ci()" placeholder="Caută meniul fizivision preferat" title="Introdu numele meniului fizivision">
+            <li><a href="index.html">Acasă</a></li>
+            <li><a href="Meca.html">Mecanică</a></li>
+            <li><a href="Termodina.html">Termodinamică</a></li>
+            <li><a href="Opti.html">Optică</a></li>
+            <li><a href="Electri.html">Electricitate</a></li>
+            <li><a href="Bici.html">Laborator</a></li>
+            <li><a href="Contabili.html">Contact</a></li>
+            </ul>
+        </aside>
+        <script>
+            function ci()
+            {
+                let input , ul , li , a , i , text, filtru;
+                input = document.getElementById('bic');
+                filtru = input.value.toUpperCase();
+                ul = document.getElementById('bi');
+                li = ul.getElementsByTagName('li');
+                for(let i=0;i<li.length;i++)
+            {
+              a=li[i].getElementsByTagName('a')[0];
+              text = a.textContent || a.innerHTML ;
+              if(text.toUpperCase().indexOf(filtru) > -1){
+                li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+              }
+            }
+
+        </script>
+        <h1>Optica</h1>
+        <section id="flash">
+            <div class="carduri">
+               <div class="card">
+                  <div class="fata-cardului" id="fata">
+                     <h2>Câte tipuri de fascicule există?</h2>
+                  </div>
+                  <div class="fata-cardului" id="spate">
+                     <h2>Fascicul paralel,covergent și divergent, deci trei.</h2>
+               </div>
+            </div>
+            </section>
+            <section id="flash">
+            <div class="carduri">
+                <div class="card">
+                   <div class="fata-cardului" id="fata">
+                      <h2>Ce studiază optica geometrică?</h2>
+                   </div>
+                   <div class="fata-cardului" id="spate">
+                      <h2>Studiază propagarea luminii prin diferite medii și formarea imaginilor prin sisteme optice fară să se intereseze de natura luminii.</h2>
+                   </div>
+                </div>
+             </div>
+            </section>
+            <section id="flash">
+                <div class="carduri">
+                    <div class="card">
+                       <div class="fata-cardului" id="fata">
+                          <h2>Ce este lumina?</h2>
+                       </div>
+                       <div class="fata-cardului" id="spate">
+                          <h2> Lumina este o undă electromagnetică care se propagă în linie dreaptă și poate avea proprietăți atât de undă, cât și de particulă (dualitate undă-corpuscul).</h2>
+                       </div>
+                    </div>
+                 </div>
+                </section>
+                <section id="flash">
+                    <div class="carduri">
+                        <div class="card">
+                           <div class="fata-cardului" id="fata">
+                          <h2>Care sunt legile reflexiei?</h2>
+                       </div>
+                       <div class="fata-cardului" id="spate">
+                          <h2> Unghiul de incidență este egal cu unghiul de reflexie.
+                            Raza incidentă, raza reflectată și normala la suprafață sunt în același plan.
+                            </h2>
+                       </div>
+                    </div>
+                 </div>
+                </section>
+            </h2>
+            <section id="flash">
+                <div class="carduri">
+                    <div class="card">
+                       <div class="fata-cardului" id="fata">
+                    <h2>Ce este refracția luminii?
+                        <h2>
+                           </div>
+                           <div class="fata-cardului" id="spate">
+                              <h2> Refracția este fenomenul de schimbare a direcției de propagare a luminii atunci când trece dintr-un mediu în altul cu indice de refracție diferit.</h2>
+                           </div>
+                        </div>
+                     </div>
+                    </section>            <section id="flash">
+                        <div class="carduri">
+                            <div class="card">
+                               <div class="fata-cardului" id="fata">
+                                  <h2>Cum se calculează indicele de refracție?</h2>
+                               </div>
+                               <div class="fata-cardului" id="spate">
+                                  <h2> Indicele de refracție 
+                                    𝑛
+                                    n se calculează cu formula:
+                                    
+                                    𝑛
+                                    =
+                                    𝑐
+                                    𝑣
+                                    n= 
+                                    v
+                                    c
+                                    ​
+                                     
+                                    unde 
+                                    𝑐
+                                    c este viteza luminii în vid, iar 
+                                    𝑣
+                                    v este viteza luminii în mediul respectiv.</h2>
+                               </div>
+                            </div>
+                         </div>
+                        </section>            <section id="flash">
+                            <div class="carduri">
+                                <div class="card">
+                                   <div class="fata-cardului" id="fata">
+                                      <h2>Ce este dispersia luminii?</h2>
+                                   </div>
+                                   <div class="fata-cardului" id="spate">
+                                      <h2>Dispersia este fenomenul prin care lumina albă se descompune în culorile spectrului vizibil la trecerea printr-o prismă.
+
+                                      </h2>
+                                   </div>
+                                </div>
+                             </div>
+                            </section>            <section id="flash">
+                                <div class="carduri">
+                                    <div class="card">
+                                       <div class="fata-cardului" id="fata">
+                                          <h2>Este unghiul de incidență la care unghiul de refracție devine 90°, ceea ce determină fenomenul de reflexie totală.</h2>
+                                       </div>
+                                       <div class="fata-cardului" id="spate">
+                                          <h2> Lumina este o undă electromagnetică care se propagă în linie dreaptă și poate avea proprietăți atât de undă, cât și de particulă (dualitate undă-corpuscul).</h2>
+                                       </div>
+                                    </div>
+                                 </div>
+                                </section> 
+                                    </section>
+                        
+                  
+                                    <h1>Prisma optica</h1>
+                                    <p style="margin-left:250px;text-align:center;">În optică, o prismă este un element optic transparent cu laturi netede, lustruite, care refractă lumina. Unghiurile exacte între fețele prismei depind de contextul în care este folosită. De obicei se folosește o prismă triunghiulară, iar în limbaj colocvial termenul prismă se referă numai la acest tip de prismă. Uneori prisma optică nu este construită în forma unei prisme în sens geometric. Prismele folosite astăzi pot fi fabricate din sticlă sau din orice alt polimer transparent, aceasta depinzând de scopul în care urmează să fie utilizată.</p>
+                                    <p style="margin-left:250px;text-align:center;">Pentru calculator apasă<a href="termo.php"> aici.</a></p>
+                                    <a href="opti.jpg">
+                                       <img id="Urat2" src="opti.jpg">
+                                    </a>
+                                    <br/>
+                                    <div class="carusel" style="height:500px;">
+                                       <div id="slider" class="lista">
+                                           <div class="iteme">
+                                               <img src="nbarbu.png"/>
+                                               </div>
+                                               <div class="iteme">
+                                                   <img src="nbarbu1.png"/>
+                                                   </div>
+                                                       <div class="iteme">
+                                                           <img src="nbarbu3.png"/>
+                                                           </div>
+                                               </div>
+                                               </div>
+                                               <script>
+                                                   let indexCurent = 0;
+                                                   const slider = document.getElementById("slider");
+                                                   const butoane = document.querySelectorAll(".buton");
+                                                   
+                                                   function schimbaSlide(index) {
+                                                       indexCurent = index;
+                                                       slider.style.transform = `translateX(-${index * 100}vw)`;
+                                                       butoane.forEach(btn => btn.classList.remove("activ"));
+                                                       butoane[index].classList.add("activ");
+                                                   }
+                                                   
+                                                   function autoSlide() {
+                                                       indexCurent = (indexCurent + 1) % 3;
+                                                       schimbaSlide(indexCurent);
+                                                   }
+                                                   
+                                                   setInterval(autoSlide, 3000);
+                                                   </script>
+                                                   </div>
+                                 </div>
+                                 </main>
+</body>
+</html>
