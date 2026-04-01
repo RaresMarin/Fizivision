@@ -29,16 +29,6 @@
             margin: 20px auto;
             overflow: hidden;
         }
-        .bila1 {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 30px;
-            height: 30px;
-            background: blue;
-            border-radius: 50%;
-            transform: translateX(-50%);
-        }
         .button {
             padding: 10px 20px;
             background: purple;
@@ -46,13 +36,16 @@
             border: none;
             cursor: pointer;
             font-size: 16px;
-            margin-top: 10px;
         }
         .masina-petrecere {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 10px;
-            margin: 20px;
+            margin-left: 280px;
+            width: 80%;
+            margin-bottom: 50px;
+
         }
         .petrecere {
             width: 100%;
@@ -157,16 +150,31 @@
     border: none;
     cursor: pointer;
 }
+@media (max-width: 1500px) {
+    .container-chat {
+        width: 90%;
+        height: 400px;
+    }
+    .petrecere {
+        font-size: 100px;
+        text-align: center;
+
+    }
+    .masina-petrecere{
+        margin-left: 0;
+        text-align: center;
+        display: block;
+        margin: auto;
+    }
+}
  
     </style>
 </head>
 <body>
     
     <main>
-        <aside>
+ <aside>
             <a href="Fv.png"><img id="Logo" src="Fv.png"/></a>
-            <ul id="bi">
-            <input type="text" id="bic" onkeyup="ci()" placeholder="Caută meniul fizivision preferat" title="Introdu numele meniului fizivision">
             <li><a href="index.html">Acasă</a></li>
             <li><a href="Meca.html">Mecanică</a></li>
             <li><a href="Termodina.html">Termodinamică</a></li>
@@ -174,157 +182,19 @@
             <li><a href="Electri.html">Electricitate</a></li>
             <li><a href="Bici.html">Laborator</a></li>
             <li><a href="Contabili.html">Contact</a></li>
-            </ul>
+            <li><a href="Quizuri.html">Quiz</a></li>
         </aside>
-        <script>
-            function ci()
-            {
-                let input , ul , li , a , i , text, filtru;
-                input = document.getElementById('bic');
-                filtru = input.value.toUpperCase();
-                ul = document.getElementById('bi');
-                li = ul.getElementsByTagName('li');
-                for(let i=0;i<li.length;i++)
-            {
-              a=li[i].getElementsByTagName('a')[0];
-              text = a.textContent || a.innerHTML ;
-              if(text.toUpperCase().indexOf(filtru) > -1){
-                li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
-              }
-            }
-
-        </script>
-        <div id="Urat1">
-            <div style="width:100;margin:0px auto">
-                <li style="width:7%;background-color:indianred;text-align:center;margin-left:300px;"><a href="#player">Music Player</a></li>
-                <li style="width:7%;background-color:indianred;text-align:center;float:right;"><a href="#masina-petrecere">Ruleta</a></li>
-                <li style="width:7%;background-color:indianred;text-align:center;"><a href="#Carte">Carte</a></li>
-                <li style="width:7%;background-color:indianred;text-align:center;float:right;"><a href="#chat">Chat</a></li>
-                <li style="width:7%;background-color:indianred;text-align:center;margin-left:300px;"><a href="#Numere">Numere</a></li>
-                <li style="width:7%;background-color:indianred;text-align:center;float:right;"><a href="#Galerie">Galerie</a></li>
-                <li style="width:7%;background-color:indianred;text-align:center;display:block;margin:0 auto;margin-top:100px;"><a href="#Dia">Diagrama</a></li>
-
-
-
-            </div>
+        <h1>Piston</h1>
 <div class="bashez">
     <div class="piston-bicis"></div>
 </div>
-<div class="pendulum" style="margin-left:200px;">
-  <div class="pendulum_box">
-    <div class="ball first"></div>
-      <div class="ball"></div>
-      <div  style="background-color:green;" class="ball"></div>
-      <div style="background-color:yellow;" class="ball"></div>
-      <div class="ball last"></div>
-  </div>
-</div>
-<h1>Simulare Cădere Liberă</h1>
-<p>Apasă pe buton pentru a lăsa bila să cadă.<button class="button" onclick="cadereLibera()">Start</button></p>
-<div class="container1">
-    
-    <div class="bila1" id="bila"></div>
-</div>
-
-<script>
-    function cadereLibera() {
-        let bila = document.getElementById("bila");
-        let pozitie = 0;
-        let viteza = 0;
-        let acceleratie = 0.5; // Gravitație simulată
-        let interval = setInterval(function() {
-            viteza += acceleratie;
-            pozitie += viteza;
-            if (pozitie >= 270) { // Bila atinge solul
-                pozitie = 270;
-                clearInterval(interval);
-            }
-            bila.style.top = pozitie + "px";
-        }, 20);
-    }
-    
-</script>
-<br/>
- 
-    <div class="player" id="player">
-        <img id="cover" class="cover" src="default.jpg" alt="Cover Album">
-        <h2 id="title"></h2>
-        <audio id="audio" controls></audio>
-        <br>
-        <button id="button" onclick="prevSong()">⏮️</button>
-        <button id="button" onclick="playPause()">▶️/⏸️</button>
-        <button id="button" onclick="nextSong()">⏭️</button>
-    </div>
-
-
-    <script>
-         const songs = [
-            { title: " In the middle - Natalia Barbu ", src: "song1.mp3", cover: "cover1.jpg" },
-            { title: " Bushes & Bicycles - Fizivision Group", src: "song2.mp3", cover: "cover2.jpg" },
-            { title: "Despacito - Luis Fons & Daddy Yanke", src: "song3.mp3", cover: "cover3.jpg" },
-            { title: "Désolée- Mentissa", src: "song4.mp3", cover: "cover4.jpg" },
-            { title: "Ich will nicht - Komm tanzen", src: "song5.mp3", cover: "cover5.jpg" },
-            { title: "Chiamo io chiami tu - Gaia", src: "song6.mp3", cover: "cover6.jpg" },
-            { title: "Külm - An-Marlen  ", src: "song7.mp3", cover: "cover7.jpg" },
-            { title: "Kohoney - Grisina  ", src: "song8.mp3", cover: "cover8.jpg" },
-            { title: "Lies lay cold - Andana  ", src: "song9.mp3", cover: "cover9.jpg" },
-            { title: " Tiki - Besa", src: "song10.mp3", cover: "cover10.jpg" },
-
-
-        ];
-        let currentSongIndex = 0;
-        const audio = document.getElementById("audio");
-        const title = document.getElementById("title");
-        const cover = document.getElementById("cover");
-
-        function loadSong(index) {
-            audio.src = songs[index].src;
-            title.textContent = "" + songs[index].title;
-            cover.src = songs[index].cover;
-        }
-
-        function playPause() {
-            if (audio.paused) {
-                audio.play();
-            } else {
-                audio.pause();
-            }
-        }
-
-        function prevSong() {
-            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-            loadSong(currentSongIndex);
-            audio.play();
-        }
-
-        function nextSong() {
-            currentSongIndex = (currentSongIndex + 1) % songs.length;
-            loadSong(currentSongIndex);
-            audio.play();
-        }
-
-        loadSong(currentSongIndex);
-    </script>
     <h1>Ruleta fizivision</h1>
     <div class="masina-petrecere" id="masina-petrecere">
         <div class="petrecere" id="petrecere1">❓</div>
         <div class="petrecere" id="petrecere2">❓</div>
         <div class="petrecere" id="petrecere3">❓</div>
     </div>
-    <button class="button" onclick="spin()">Apasa</button>
-    
-    <script>
-        const symbols = ['🍒', '🐪', '🏍️', '🚴🏻‍♀️', '🌳', '7️⃣'];
-        
-        function spin() {
-            document.getElementById('petrecere1').textContent = symbols[Math.floor(Math.random() * symbols.length)];
-            document.getElementById('petrecere2').textContent = symbols[Math.floor(Math.random() * symbols.length)];
-            document.getElementById('petrecere3').textContent = symbols[Math.floor(Math.random() * symbols.length)];
-        }
-    </script>
+    <button style="display: block;margin: auto;" class="button" onclick="spin()">Apasa</button>
     <h1>Vorbește cu Fizivison</h1>
 <div class="container-chat" id="chat" >
         
@@ -346,9 +216,97 @@
         <button style="height:45px;width:130px;" onclick="trimiteMesaj()">Trimite</button>
     </div>
 </div>
+    <h1 id="Numere">Generator de numere</h1>
+    <p>Schimba dimensiunea paginii pentru a genera diferite numere.</p>
+        <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div style="text-align:center;">
+    <span id="demo">68</span>
+    <span id="demo1">2</span>
+    <span id="demo2">7</span>
+    <span id="demo3">12</span>
+    <span id="demo4">54</span>
+    <span id="demo5">8</span>
 
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <h1 id="Galerie">Galerie</h1>
+    <div class="Galerie">
+    <button class="inapoi" style="float:left" onclick="inainte(-1)"><</button>
+<button class="inainte" style="float:right" onclick="inainte(1)">></button>
+    <div class="img"><a href="meca1.html"><img id="img" src="fizi.jpg"/></a></div>
+    <div class="img"><a href="termo1.html"><img id="img" src="fizi1.jpg"/></a></div>
+    <div class="img"><a href="opti1.html"><img id="img" src="fizi2.jpg"/></a></div>
+    <div class="img"><a href="electri1.html"><img id="img" src="fizi3.jpg"/></a></div>
+    <div class="img"><a href="roboti.html"><img id="img" src="bici.webp"/></a></div>
+</div>
 <script>
-    let subiectCurent = null;
+            const symbols = [' 🧠 ', ' 🌟 ', ' 💡 ', ' 🌌 ', ' 🪐 ', '🔭 '];
+        
+        function spin() {
+            document.getElementById('petrecere1').textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            document.getElementById('petrecere2').textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            document.getElementById('petrecere3').textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        }
+    let index = 1;
+    Apare(index);
+    function inainte(n)
+    {
+        index +=n;
+        Apare(index);
+    }
+    function Apare(n){
+        const imaginii = document.getElementsByClassName('img');
+        if(n>imaginii.length) index=1;
+        if(n<1)index=imaginii.length;
+        for(let i=0;i<imaginii.length;i++)
+    {
+        imaginii[i].style.display="none";
+    }
+    imaginii[index-1].style.display = "block";
+    }
+        addEventListener("resize" , e );
+    addEventListener("resize" , f );
+    addEventListener("resize" , g );
+    addEventListener("resize" , h );
+    addEventListener("resize" , i );
+    addEventListener("resize" , j );
+
+
+    function e(){
+    let n = Math.floor(Math.random()*100);
+    document.getElementById('demo').innerHTML = n;
+    }
+        function f(){
+    let m= Math.floor(Math.random()*100);
+    document.getElementById('demo1').innerHTML = m;
+    }
+        function g(){
+    let p = Math.floor(Math.random()*100);
+    document.getElementById('demo2').innerHTML = p;
+    }
+            function h(){
+    let h= Math.floor(Math.random()*100);
+    document.getElementById('demo3').innerHTML = h;
+    }
+            function i(){
+    let i = Math.floor(Math.random()*100);
+    document.getElementById('demo4').innerHTML = i;
+    }
+            function j(){
+    let j = Math.floor(Math.random()*100);
+    document.getElementById('demo5').innerHTML = j;
+    }
+      let subiectCurent = null;
     let ultimulRaspuns = "";
 
     function alegeSubiect(subiect) {
@@ -437,355 +395,6 @@
             ultimulRaspuns = raspuns;
         }
     }
-</script>
-<div style="text-align: center;" id="Carte">
-    <button id="prev-btn">
-        <i class="arrow left"></i>
-    </button>
-    <button id="next-btn">
-        <i class="arrow right"></i>
-    </button>
-</div>
-   <h1>Carte</h1>
-    <div id="book" class="book" style="display:block;margin:0px auto">
-        <!-- First Sheet (Coperta) -->
-        <div id="p1" class="paper">
-            <div class="front">
-                <div id="f1" class="front-content">
-                    <!-- Coperta față -->
-                </div>
-            </div>
-            <div class="back">
-                <div id="b1" class="back-content">
-                    <h1 style="color:black">Fizicieni Importanți</h1>
-                </div>
-            </div>
-        </div>
-    
-        <!-- Second Sheet -->
-        <div id="p2" class="paper">
-            <div class="front">
-                <div id="f2" class="front-content">
-                    <h3>Albert Einstein</h3>
-                    <img style="width:50%;height:50%;margin-left:50px" src="einstein.jpg" alt="Albert Einstein">
-                    
-                    </div>
-            </div>
-            <div class="back">
-                <div id="b2" class="back-content">
-                    <img style="width:50%;height:50%;margin-left:50px" src="newton.jpg" alt="Isaac Newton">
-                    <h3>Isaac Newton</h3>
-                    
-                </div>
-            </div>
-        </div>
-    
-        <!-- Third Sheet -->
-        <div id="p3" class="paper">
-            <div class="front">
-                <div id="f3" class="front-content">
-                    <img style="width:50%;height:50%;margin-left:50px" src="coanda.jpg" alt="Henri Coandă">
-                    <h3>Henri Coandă</h3>
-                   
-                </div>
-            </div>
-            <div class="back">
-                <div id="b3" class="back-content">
-                    <img src="coperta.jpg"/>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-        const prevBtn = document.querySelector("#prev-btn");
-const nextBtn = document.querySelector("#next-btn");
-const book = document.querySelector("#book");
-
-const paper1 = document.querySelector("#p1");
-const paper2 = document.querySelector("#p2");
-const paper3 = document.querySelector("#p3");
-const paper4 = document.querySelector("#p4");
-const paper5 = document.querySelector("#p5");
-const paper6 = document.querySelector("#p6");
-const paper7 = document.querySelector("#p7");
-
-prevBtn.addEventListener("click", goPrevPage);
-nextBtn.addEventListener("click", goNextPage);
-
-let currentLocation = 1;
-let numOfPapers = 7;
-let maxLocation = numOfPapers + 1;
-
-function openBook() {
-    book.style.transform = "translateX(50%)";
-    prevBtn.style.transform = "translateX(-180px)";
-    nextBtn.style.transform = "translateX(180px)";
-}
-
-function closeBook(isAtBeginning) {
-    if(isAtBeginning) {
-        book.style.transform = "translateX(0%)";
-    } else {
-        book.style.transform = "translateX(100%)";
-    }
-    
-    prevBtn.style.transform = "translateX(0px)";
-    nextBtn.style.transform = "translateX(0px)";
-}
-
-function goNextPage() {
-    if(currentLocation < maxLocation) {
-        switch(currentLocation) {
-            case 1:
-                openBook();
-                paper1.classList.add("flipped");
-                paper1.style.zIndex = 1;
-                break;
-            case 2:
-                paper2.classList.add("flipped");
-                paper2.style.zIndex = 2;
-                break;
-            case 3:
-                paper3.classList.add("flipped");
-                paper3.style.zIndex = 3;
-                break;
-            case 4:
-                paper4.classList.add("flipped");
-                paper4.style.zIndex = 4;
-                break;
-            case 5:
-                paper5.classList.add("flipped");
-                paper5.style.zIndex = 5;
-                break;
-            case 6:
-                paper6.classList.add("flipped");
-                paper6.style.zIndex = 6;
-                break;
-            case 7:
-                paper7.classList.add("flipped");
-                paper7.style.zIndex = 7;
-                closeBook(false);
-                break;
-            default:
-                throw new Error("unkown state");
-        }
-        currentLocation++;
-    }
-}
-
-function goPrevPage() {
-    if(currentLocation > 1) {
-        switch(currentLocation) {
-            case 2:
-                closeBook(true);
-                paper1.classList.remove("flipped");
-                paper1.style.zIndex = 7;
-                break;
-            case 3:
-                paper2.classList.remove("flipped");
-                paper2.style.zIndex = 6;
-                break;
-            case 4:
-                paper3.classList.remove("flipped");
-                paper3.style.zIndex = 5;
-                break;
-            case 5:
-                paper4.classList.remove("flipped");
-                paper4.style.zIndex = 4;
-                break;
-            case 6:
-                paper5.classList.remove("flipped");
-                paper5.style.zIndex = 3;
-                break;
-            case 7:
-                paper6.classList.remove("flipped");
-                paper6.style.zIndex = 2;
-                break;
-            case 8:
-                openBook();
-                paper7.classList.remove("flipped");
-                paper7.style.zIndex = 1;
-                break;                
-            default:
-                throw new Error("unkown state");
-        }
-
-        currentLocation--;
-    }
-}
-    </script>
-    <h1 id="Numere">Generator de numere</h1>
-    <p>Schimba dimensiunea paginii pentru a genera diferite numere.</p>
-        <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <div style="text-align:center;">
-    <span id="demo">68</span>
-    <span id="demo1">2</span>
-    <span id="demo2">7</span>
-    <span id="demo3">12</span>
-    <span id="demo4">54</span>
-    <span id="demo5">8</span>
-
-    </div>
-    <script>
-    addEventListener("resize" , e );
-    addEventListener("resize" , f );
-    addEventListener("resize" , g );
-    addEventListener("resize" , h );
-    addEventListener("resize" , i );
-    addEventListener("resize" , j );
-
-
-    function e(){
-    let n = Math.floor(Math.random()*100);
-    document.getElementById('demo').innerHTML = n;
-    }
-        function f(){
-    let m= Math.floor(Math.random()*100);
-    document.getElementById('demo1').innerHTML = m;
-    }
-        function g(){
-    let p = Math.floor(Math.random()*100);
-    document.getElementById('demo2').innerHTML = p;
-    }
-            function h(){
-    let h= Math.floor(Math.random()*100);
-    document.getElementById('demo3').innerHTML = h;
-    }
-            function i(){
-    let i = Math.floor(Math.random()*100);
-    document.getElementById('demo4').innerHTML = i;
-    }
-            function j(){
-    let j = Math.floor(Math.random()*100);
-    document.getElementById('demo5').innerHTML = j;
-    }
-    </script>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <h1 id="Galerie">Galerie</h1>
-    <div class="Galerie">
-    <button class="inapoi" style="float:left" onclick="inainte(-1)"><</button>
-<button class="inainte" style="float:right" onclick="inainte(1)">></button>
-    <div class="img"><a href="meca1.html"><img id="img" src="fizi.jpg"/></a></div>
-    <div class="img"><a href="termo1.html"><img id="img" src="fizi1.jpg"/></a></div>
-    <div class="img"><a href="opti1.html"><img id="img" src="fizi2.jpg"/></a></div>
-    <div class="img"><a href="electri1.html"><img id="img" src="fizi3.jpg"/></a></div>
-    <div class="img"><a href="roboti.html"><img id="img" src="bici.webp"/></a></div>
-</div>
-<script>
-    let index = 1;
-    Apare(index);
-    function inainte(n)
-    {
-        index +=n;
-        Apare(index);
-    }
-    function Apare(n){
-        const imaginii = document.getElementsByClassName('img');
-        if(n>imaginii.length) index=1;
-        if(n<1)index=imaginii.length;
-        for(let i=0;i<imaginii.length;i++)
-    {
-        imaginii[i].style.display="none";
-    }
-    imaginii[index-1].style.display = "block";
-    }
-</script>
-<h1 id="Dia">Diagrama</h1>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-<canvas id="hey" style="width:100%;max-width:600px;float:right;"></canvas>
-<canvas id="hey1" style="width:100%;max-width:600px;float:left;"></canvas>
-<canvas id="hey2" style="width:100%;max-width:600px;display:block;margin:0 auto;"></canvas>
-<script>
-const materi = ["Mecanică", "Termodinamică", "Optică", "Electricitate", "Robotică"];
-const copii = [69, 89, 68, 100, 50];
-const culori = ["indianred", "indigo","purple","navy","cyan"];
-
-new Chart("hey", {
-  type: "pie",
-  data: {
-    labels: materi,
-    datasets: [{
-      backgroundColor: culori,
-      data: copii
-    }]
-  },
-  options: {
-    legend: {display: false},
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    },
-
-    title: {
-      display: true,
-      text: "Diagrama radiana" ,
-    }
-  }
-});
-new Chart("hey1", {
-  type: "bar",
-  data: {
-    labels: materi,
-    datasets: [{
-      backgroundColor: culori,
-      data: copii
-    }]
-  },
-  options: {
-    legend: {display: false},
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    },
-
-    title: {
-      display: true,
-      text: "Diagrama bara"
-    }
-  }
-});
-new Chart("hey2", {
-  type: "line",
-  data: {
-    labels: materi,
-    datasets: [{
-      backgroundColor: culori,
-      data: copii
-    }]
-  },
-  options: {
-    legend: {display: false},
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    },
-
-    title: {
-      display: true,
-      text: "Diagrama cu puncte"
-    }
-  }
-});
 </script>
     </div>
     
