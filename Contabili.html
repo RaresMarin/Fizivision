@@ -8,15 +8,23 @@
     <link rel="icon" href="Fv.png" type="image/jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+<style>
+    @media (max-width: 1500px) {
+        aside{
+            backdrop-filter: blur(80px);
+        }
+        li a:hover{
+            background-color: transparent;
+            color:black
+        }
+    }
+</style>
 <body>
-    <script src="Fizivision.js"></script>
-      
     <main>
-        <aside style="z-index:1;">
-            
+        <aside style="z-index: 99;">
             <a href="Fv.png"><img id="Logo" src="Fv.png"/></a>
-            <ul id="bi">
-            <input type="text" id="bic" onkeyup="ci()" placeholder="Caută meniul fizivision preferat" title="Introdu numele meniului fizivision">
+            <details>
+             <summary></summary>
             <li><a href="index.html">Acasă</a></li>
             <li><a href="Meca.html">Mecanică</a></li>
             <li><a href="Termodina.html">Termodinamică</a></li>
@@ -24,29 +32,10 @@
             <li><a href="Electri.html">Electricitate</a></li>
             <li><a href="Bici.html">Laborator</a></li>
             <li><a href="Contabili.html">Contact</a></li>
-            </ul>
+            <li><a href="Quizuri.html">Quiz</a></li>
+        </details>
         </aside>
-        <script>
-            function ci()
-            {
-                let input , ul , li , a , i , text, filtru;
-                input = document.getElementById('bic');
-                filtru = input.value.toUpperCase();
-                ul = document.getElementById('bi');
-                li = ul.getElementsByTagName('li');
-                for(let i=0;i<li.length;i++)
-            {
-              a=li[i].getElementsByTagName('a')[0];
-              text = a.textContent || a.innerHTML ;
-              if(text.toUpperCase().indexOf(filtru) > -1){
-                li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
-              }
-            }
-
-        </script>
+        </main>
         <div class="fundal">
             <div class="container" id="formular-container">
                 <div class="formular">
@@ -96,12 +85,7 @@ function Formularmiscator() {
     document.getElementById('formular-container').classList.toggle('active');
 }
             </script>
-            <div style="text-align:center;">
-                    <a href="https://eduboom.ro/">EduBoom</a>
-                    <a href="https://www.edupedu.ro/">EduPedu</a>
-                    <a href="https://phet.colorado.edu/">Phet Colorado</a>
-                    <a href="https://autobaiasprie.ro/">Mecanica</a>
-                </div>
+                <script src="Fizivision.js"></script>
     </main>
     </body>
     </html>
