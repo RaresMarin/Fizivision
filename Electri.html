@@ -62,13 +62,9 @@
 </style>
 </head>
 <body>
-      
-    <main>
-        <aside>
-            
+      <main>
+      <aside>
             <a href="Fv.png"><img id="Logo" src="Fv.png"/></a>
-            <ul id="bi">
-            <input type="text" id="bic" onkeyup="ci()" placeholder="Caută meniul fizivision preferat" title="Introdu numele meniului fizivision">
             <li><a href="index.html">Acasă</a></li>
             <li><a href="Meca.html">Mecanică</a></li>
             <li><a href="Termodina.html">Termodinamică</a></li>
@@ -76,29 +72,8 @@
             <li><a href="Electri.html">Electricitate</a></li>
             <li><a href="Bici.html">Laborator</a></li>
             <li><a href="Contabili.html">Contact</a></li>
-            </ul>
+            <li><a href="Quizuri.html">Quiz</a></li>
         </aside>
-        <script>
-            function ci()
-            {
-                let input , ul , li , a , i , text, filtru;
-                input = document.getElementById('bic');
-                filtru = input.value.toUpperCase();
-                ul = document.getElementById('bi');
-                li = ul.getElementsByTagName('li');
-                for(let i=0;i<li.length;i++)
-            {
-              a=li[i].getElementsByTagName('a')[0];
-              text = a.textContent || a.innerHTML ;
-              if(text.toUpperCase().indexOf(filtru) > -1){
-                li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
-              }
-            }
-
-        </script>
         <div id="Urat1">
             <h1>Circuit Paralel</h1>
             <p style="color:white">Apasă pe comutator pentru a aprinde/stinge becurile.</p>
@@ -117,10 +92,9 @@
 <input  style="width:10%;" id="rezistenta" placeholder="12Ω"></input>
 <address>Rezultatul este <span id="calcul">1</span> A</address>
 <button onclick="calculeaza()">Schimba datele</button>
-<script src="Fizivision.js"></script>
         <h1>Curentul alternativ</h1>
-        <img style="margin-left:40%;" src="curealte.gif"/>
-        <h1>Informații despre Electricitate</h1>
+        <img id="CU" style="margin-left:40%;" src="curealte.gif"/>
+        <h1 id="cont">Informații despre Electricitate</h1>
         <div class="container2">
             <div class="card2">
                 <h2>Ce este Electricitatea?</h2>
@@ -146,11 +120,10 @@
         </div>
         <h1>Circuit electric</h1>
         <a href="circuelec.png">
-            <img style="float:right;width:50%;height:50%" src="circuelec.png"/>
+            <img id="FLO" src="circuelec.png"/>
         </a>
         <p style="color:white">Un circuit electric este un traseu închis prin care circulă curentul electric, format din surse de tensiune (baterii, prize), conductori (fire) și consumatori (becuri, motoare). Poate fi în serie sau paralel, iar funcționarea sa depinde de legăturile dintre componente și de caracteristicile acestora.</p>
-        <p style="color:white">Pentru calculator apasă <a href="electri.php">aici</a></p>
-    </div>
+        </div>
     <br/>
             <div class="carusel" style="height:500px;">
                 <div id="slider" class="lista">
@@ -188,13 +161,12 @@
                             }
                             
                             setInterval(autoSlide, 3000);
-                            </script>
-                            </div>
-            <script>
                 function toggleCircuit() {
                     document.querySelector('.circuit').classList.toggle('off');
                 }
             </script>
+            <script src="Fizivision.js"></script>
+                                        </div> 
         </body>
         </html>
         
