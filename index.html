@@ -20,6 +20,7 @@
             <li><a href="Electri.html">Electricitate</a></li>
             <li><a href="Bici.html">Laborator</a></li>
             <li><a href="Contabili.html">Contact</a></li>
+            <li><a href="Quizuri.html">Quiz</a></li>
         </details>
         </aside>
     </main>
@@ -31,6 +32,7 @@
     <script>
         // Lista cu videoclipurile
         const videos = ["likewow.mp4", "likewow1.mp4", "cami.mp4" ];
+        const color = ["#29104a", "black", "#29104a"];
         let index = 0;
     
         const videoElement = document.getElementById("video");
@@ -39,12 +41,12 @@
         setInterval(() => {
             index = (index + 1) % videos.length;
             videoElement.src = videos[index];
+            document.body.style.backgroundColor = color[index];
             videoElement.play();
         }, 5000);
     </script>
 
       <button><a id="buton1" href="Quizuri.html">Inregistreazate Acum</a></button>
-      <button><a id="buton1" style="left:54%" href="Contabili.html">Inregistreazate Acum</a></button>
-      
-</body>
+      <button><a id="buton2" style="left:54%" href="Contabili.html">Inregistreazate Acum</a></button>
+    </body>
 </html>
