@@ -2,7 +2,6 @@ body{
     height:90vh;
     background-color:#29104a;
 }
-
 main{
     height:100%;
     width:100%;
@@ -58,7 +57,7 @@ video {
     z-index: -1;
   }
 
-#buton1{
+#buton1, #buton2{
     float:right;
     margin:50px;
     height:10%;
@@ -87,7 +86,15 @@ video {
     background-size:50rem;
     animation: gradientAnimation 15s ease infinite;
 }
-
+.just{
+  margin-top:100px;
+  display:grid;
+  grid-template-columns: repeat(2,1fr);
+  gap:20px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 @keyframes gradientAnimation {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -95,7 +102,7 @@ video {
 }
 
 .bashesbicis{
-    width:50%;
+    width:100%;
     background:transparent;
     border-radius: 10px;
     position: absolute;
@@ -106,6 +113,9 @@ video {
 }
 
 #hover{
+  display: block;
+    margin: auto;
+  width: 50%;
     background-color:white;
     color:black;
 }
@@ -170,30 +180,16 @@ button {
 }
 
 .quiz{
-     width:37%;
-     gap:20px;
-     margin:20px;
-     height:100%;
+  display: block;
+     width:30%;
+     margin:auto;
+     height:50%;
      bottom:0;
     border:5px solid white;
      padding: 20px;
      text-align: center;
      font-size: 35px;
-     font-family: "Gill Sans Extrabold", sans-serif;
-}
-
-.quiz1{
- 
-    float:right;
-    width:37%;
-    border:5px solid white;
-    gap:20px;
-    margin:20px;
-    height:100%;
-    padding: 20px;
-    text-align: center;
-    font-size:35px;
-    font-family: "Gill Sans Extrabold", sans-serif;
+     font-family: sans-serif;
 }
 
 .carusel {
@@ -303,11 +299,13 @@ button {
   }
 
   img{
+    z-index: -1;
     height:30%;
     width:18%;
   }
 
-  #Urat{
+  .Urat{
+    z-index: -1;
     animation: impinge 10s infinite;
     float:right;
     width:15%;
@@ -373,8 +371,15 @@ td{
 }
 
 #Rares{
-  width:100%;
-  height:100%;
+  height: auto;
+width:80%;
+float:right; 
+}
+#Rares1{
+  height: auto;
+width:80%;
+display: block;
+margin: auto; 
 }
 .carduri{
   width:600px;
@@ -385,9 +390,9 @@ perspective:1000px;
 
 
 @keyframes impinge{
-    50% { transform: translateX(200px) }
+    50% { transform: translateX(100px) }
     to {
-        transform: translateZ(-100px);
+        transform: translateZ(-150px);
     }
 }
 
@@ -456,6 +461,8 @@ align-items: center;
   position: relative;
   background: lightgray;
   overflow: hidden;
+  display: block;
+  margin: auto;
   
 }
 .piston-bicis {
@@ -605,7 +612,9 @@ i {
 .back-content {
   transform: rotateY(180deg);
 }
-
+span{
+  color:white;
+}
 #moto{
   width:50%;
   height:100%;
@@ -623,4 +632,106 @@ a{
 a:hover{
   color:pink;
 }
+@media (max-width: 1500px) {
+  #Logo{
+    display: none;
+  }
+  aside {
+    z-index: 2;
+    position: relative;
+    font-size: 20px;
+    width: 25%;
+    height: auto;
+    display: inline;
+  }
+  li a{
+    display: inline;
+    padding: 10px;
+  }
+  
+  video {
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 375px;
+    height: 200px;
+  }
 
+  #buton1 , #buton2 {
+    display: none;
+  }
+  
+  .carusel {
+    display: none;
+  }
+  table{
+    display: none;
+  }
+  #Urat1{
+    width: 100%;
+    display: block;
+    margin-left: none;
+    text-align: center;
+  }
+  #Rares{
+    display:block;
+    margin: auto;
+    width: 100%;
+    height: auto;
+  }
+  h2{
+    text-align: center;
+    font-size:25px;
+  }
+  .carduri{
+    height: 300px;
+  width:300px;
+perspective:500px;
+  }
+#Urat2{
+  float: none;
+  display: block;
+  margin: auto;
+  width: 30%;
+}
+#credinta{
+  display: none;
+}
+#CU{
+  display: block;
+  margin:auto;
+}
+#cont{
+  display: none;
+}
+.card2{
+  display: none;
+}
+.just{
+  margin-top:100px;
+  display:grid;
+  grid-template-columns: repeat(1,1fr);
+  gap:20px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.quiz{
+  font-size:20px;
+}
+i{
+  font-size: 30px;
+}
+}
+#credinta{
+  margin-left:250px;
+  text-align:center;
+}
+#FLO{
+  width:50%;
+    float:none;
+  display: block;
+  margin: auto;
+  height:50%;
+}
