@@ -11,9 +11,7 @@
      
     <main>
         <aside>
-                     <a href="Fv.png"><img id="Logo" src="Fv.png"/></a>
-            <ul id="bi">
-            <input type="text" id="bic" onkeyup="ci()" placeholder="Caută meniul fizivision preferat" title="Introdu numele meniului fizivision">
+            <a href="Fv.png"><img id="Logo" src="Fv.png"/></a>
             <li><a href="index.html">Acasă</a></li>
             <li><a href="Meca.html">Mecanică</a></li>
             <li><a href="Termodina.html">Termodinamică</a></li>
@@ -21,29 +19,8 @@
             <li><a href="Electri.html">Electricitate</a></li>
             <li><a href="Bici.html">Laborator</a></li>
             <li><a href="Contabili.html">Contact</a></li>
-            </ul>
+            <li><a href="Quizuri.html">Quiz</a></li>
         </aside>
-        <script>
-            function ci()
-            {
-                let input , ul , li , a , i , text, filtru;
-                input = document.getElementById('bic');
-                filtru = input.value.toUpperCase();
-                ul = document.getElementById('bi');
-                li = ul.getElementsByTagName('li');
-                for(let i=0;i<li.length;i++)
-            {
-              a=li[i].getElementsByTagName('a')[0];
-              text = a.textContent || a.innerHTML ;
-              if(text.toUpperCase().indexOf(filtru) > -1){
-                li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
-              }
-            }
-
-        </script>
         <h1>Optica</h1>
         <section id="flash">
             <div class="carduri">
@@ -164,8 +141,7 @@
                         
                   
                                     <h1>Prisma optica</h1>
-                                    <p style="margin-left:250px;text-align:center;">În optică, o prismă este un element optic transparent cu laturi netede, lustruite, care refractă lumina. Unghiurile exacte între fețele prismei depind de contextul în care este folosită. De obicei se folosește o prismă triunghiulară, iar în limbaj colocvial termenul prismă se referă numai la acest tip de prismă. Uneori prisma optică nu este construită în forma unei prisme în sens geometric. Prismele folosite astăzi pot fi fabricate din sticlă sau din orice alt polimer transparent, aceasta depinzând de scopul în care urmează să fie utilizată.</p>
-                                    <p style="margin-left:250px;text-align:center;">Pentru calculator apasă<a href="termo.php"> aici.</a></p>
+                                    <p id="credinta">În optică, o prismă este un element optic transparent cu laturi netede, lustruite, care refractă lumina. Unghiurile exacte între fețele prismei depind de contextul în care este folosită. De obicei se folosește o prismă triunghiulară, iar în limbaj colocvial termenul prismă se referă numai la acest tip de prismă. Uneori prisma optică nu este construită în forma unei prisme în sens geometric. Prismele folosite astăzi pot fi fabricate din sticlă sau din orice alt polimer transparent, aceasta depinzând de scopul în care urmează să fie utilizată.</p>
                                     <a href="opti.jpg">
                                        <img id="Urat2" src="opti.jpg">
                                     </a>
@@ -204,6 +180,6 @@
                                                    </script>
                                                    </div>
                                  </div>
-                                 </main>
+                                     </main>
 </body>
 </html>
