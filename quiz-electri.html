@@ -15,17 +15,18 @@
             background-image: url("fizi3.jpg");
             background-size: cover;
         }
-        .quiz-container {
-                    margin:100px;
-            background: black;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 50%;
-            color: white;
-            font-size: 25px;
-        }
+    .quiz-container {
+        backdrop-filter: blur(20px);
+        padding: 20px;
+        display: block;
+        margin: auto;
+        width: 50vw;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        color: white;
+        font-size: 25px;
+    }
         .question {
             margin-bottom: 15px;
             font-size: 30px;
@@ -60,6 +61,7 @@
     </style>
 </head>
 <body>
+        <div style="display: grid;justify-content: center;align-items: center;height: 100vh;">
     <div class="quiz-container">
                      <a href="Quizuri.html" > 
                 <i style="float:left" class="fa-solid fa-house"></i>
@@ -71,6 +73,7 @@
         <div id="answers-review"></div>
         <div class="progress-bar"><div class="progress" id="progress"></div></div>
         <button id="back-to-score" onclick="backToScore()" style="display: none;">Înapoi la rezultat</button>
+    </div>
     </div>
     
     
