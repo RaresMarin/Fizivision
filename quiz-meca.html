@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
@@ -8,21 +8,24 @@
     <title>Quiz Interactiv</title>
     <style>
     body {
+        background-attachment: fixed;
         font-family: Arial, sans-serif;
         display: flex;
         justify-content: center;
         align-items: center;
         background-image: url("fizi.jpg");
         background-size: cover;
+        background-repeat: no-repeat;
     }
     .quiz-container {
-                margin:100px;
-        background: black;
+        backdrop-filter: blur(20px);
         padding: 20px;
+        display: block;
+        margin: auto;
+        width: 50vw;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         text-align: center;
-        width: 50%;
         color: white;
         font-size: 25px;
     }
@@ -57,9 +60,26 @@
         width: 0%;
         border-radius: 10px;
     }
+    @media (max-width: 768px) {
+        .quiz-container {
+            width: 90%;
+            margin: 20px;
+        }
+        .question {
+            font-size: 24px;
+        }
+        .options label {
+            font-size: 18px;
+        }
+        button {
+            font-size: 16px;
+            padding: 8px 16px;
+        }
+    }
 </style>
 </head>
 <body>
+    <div style="display: grid;justify-content: center;align-items: center;height: 100vh;">
 <div class="quiz-container">
                  <a href="Quizuri.html" > 
                 <i style="float:left" class="fa-solid fa-house"></i>
@@ -70,6 +90,7 @@
     <button id="show-answers" onclick="toggleAnswers()" style="display: none;">Afișează răspunsurile</button>
     <div id="answers-review"></div>
     <div class="progress-bar"><div class="progress" id="progress"></div></div>
+</div>
 </div>
 
 
